@@ -12,5 +12,9 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"]
+  },
+  "deploy": {
+    "project": "zaber.dev",
+    "entrypoint": "server/index.ts"
   }
 }
