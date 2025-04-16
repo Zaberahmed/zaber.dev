@@ -9,7 +9,7 @@ const server = createHTTPServer({
 });
 
 server.listen(3000);
-console.log("Server is running on http://localhost:3000");
+console.log("🚀 Server ready at http://localhost:3000");
 
 // Export type router type signature, NOT the router itself.
 export type AppRouter = typeof appRouter;
