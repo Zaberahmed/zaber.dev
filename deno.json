@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --watch server/index.ts"
+    "dev": "deno run --allow-env --allow-net --watch server/index.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
@@ -9,7 +9,6 @@
     "zod": "npm:zod@^3.24.2"
   },
   "compilerOptions": {
-    "allowJs": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"]
