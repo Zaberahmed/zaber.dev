@@ -1,0 +1,14 @@
+{
+  "name": "@scope/api",
+  "exports": {
+    ".": "./index.ts",
+    "./trpc": "./trpc/index.ts"
+  },
+  "tasks": {
+    "dev": "deno run --allow-env --allow-net --watch index.ts"
+  },
+  "imports": {
+    "@shared/": "../shared/",
+    "@trpc/server": "npm:@trpc/server@^11.0.0"
+  }
+}

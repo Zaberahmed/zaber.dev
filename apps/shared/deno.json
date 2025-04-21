@@ -1,0 +1,10 @@
+{
+  "name": "@scope/shared",
+  "exports": {
+    ".": "./index.ts",
+    "./types": "./types/index.ts"
+  },
+  "tasks": {
+    "test": "deno test"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "version": "4",
+  "specifiers": {
+    "npm:@trpc/server@11": "11.1.0_typescript@5.8.3"
+  },
+  "npm": {
+    "@trpc/server@11.1.0_typescript@5.8.3": {
+      "integrity": "sha512-uAJ7ikejeujVkf53XFJ/0W8nr7bDjul+Szk5Rsepq97Hb/WS1RkRXdyX4KqAyCE9b1vDFCJVJwSxiIZdRtbTZQ==",
+      "dependencies": [
+        "typescript"
+      ]
+    },
+    "typescript@5.8.3": {
+      "integrity": "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:@trpc/server@11"
+    ]
+  }
+}
