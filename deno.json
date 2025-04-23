@@ -1,16 +1,18 @@
 {
   "tasks": {
     "dev:api": "deno run --allow-env --allow-net --watch apps/api/index.ts",
-    "dev": "deno task dev:api",
+    "dev:web": "deno run -A --node-modules-dir npm:vite",
+    "dev": "deno task dev:api && deno task dev:web",
     "test": "deno test",
     "lint": "deno lint",
     "format": "deno fmt"
   },
+  "nodeModulesDir": "auto",
 
-  "workspace": ["apps/api", "apps/shared"],
+  "workspace": ["apps/api", "apps/shared", "apps/web"],
 
   "deploy": {
-    "project": "zaber-dev",
+    "project": "zaber.dev",
     "exclude": ["**/node_modules"],
     "include": ["apps/api", "apps/shared"],
     "entrypoint": "apps/api/index.ts"
