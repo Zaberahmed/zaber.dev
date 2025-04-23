@@ -13,7 +13,9 @@
     "format": "deno fmt"
   },
   "nodeModulesDir": "auto",
+
   "workspace": ["apps/api", "apps/shared", "apps/web"],
+
   "deploy": {
     "project": "zaber.dev",
     "exclude": ["**/node_modules"],
