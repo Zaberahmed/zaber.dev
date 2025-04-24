@@ -9,7 +9,7 @@ export const createServer = () => {
   return createHTTPServer({
     router: appRouter,
     createContext({ req, res }) {
-      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Origin", "https://zaber.deno.dev");
       res.setHeader("Access-Control-Request-Method", "*");
       res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST");
       res.setHeader("Access-Control-Allow-Headers", "*");

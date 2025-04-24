@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     const fetchHello = async () => {
-      const response = await fetch("http://localhost:3000/hello");
+      const response = await fetch("https://zaber-api.deno.dev/hello");
       const data = await response.json();
       console.log(data);
     };

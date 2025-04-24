@@ -1,25 +1,36 @@
 {
   "tasks": {
     "dev:api": "deno run --allow-env --allow-net --watch apps/api/index.ts",
+    "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts",
 
     "dev:web": "cd apps/web && deno run -A --node-modules-dir npm:vite",
     "build:web": "cd apps/web && deno run -A --node-modules-dir npm:vite build",
     "preview:web": "cd apps/web && deno run -A --node-modules-dir npm:vite preview",
     "serve:web": "cd apps/web && deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
+    "deploy:web": "deployctl deploy --project=zaber --prod apps/web/server.ts",
 
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",
     "lint": "deno lint",
-    "format": "deno fmt"
+    "format": "deno fmt",
+    "deploy": "deno task deploy:api & deno task deploy:web"
   },
   "nodeModulesDir": "auto",
 
   "workspace": ["apps/api", "apps/shared", "apps/web"],
 
   "deploy": {
-    "project": "zaber-api",
-    "exclude": ["**/node_modules"],
-    "include": ["apps/api", "apps/shared"],
-    "entrypoint": "apps/api/index.ts"
+    "api": {
+      "project": "zaber-api",
+      "exclude": ["**/node_modules"],
+      "include": ["apps/api", "apps/shared"],
+      "entrypoint": "apps/api/index.ts"
+    },
+    "web": {
+      "project": "zaber",
+      "exclude": ["**/node_modules"],
+      "include": ["apps/web", "apps/shared"],
+      "entrypoint": "apps/web/server.ts"
+    }
   }
 }
