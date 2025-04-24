@@ -1,9 +1,18 @@
-import './App.css'
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import "./App.css";
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const fetchHello = async () => {
+      const response = await fetch("http://localhost:3000/hello");
+      const data = await response.json();
+      console.log(data);
+    };
+    fetchHello();
+  }, []);
 
   return (
     <>
@@ -18,7 +27,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button type="button" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>
@@ -29,7 +38,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

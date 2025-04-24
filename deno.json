@@ -2,10 +2,10 @@
   "tasks": {
     "dev:api": "deno run --allow-env --allow-net --watch apps/api/index.ts",
 
-    "dev:web": "deno run -A --node-modules-dir npm:vite",
-    "build:web": "deno run -A --node-modules-dir npm:vite build",
-    "preview:web": "deno run -A --node-modules-dir npm:vite preview",
-    "serve:web": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
+    "dev:web": "cd apps/web && deno run -A --node-modules-dir npm:vite",
+    "build:web": "cd apps/web && deno run -A --node-modules-dir npm:vite build",
+    "preview:web": "cd apps/web && deno run -A --node-modules-dir npm:vite preview",
+    "serve:web": "cd apps/web && deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
 
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",

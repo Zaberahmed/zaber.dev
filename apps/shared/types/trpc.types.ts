@@ -1,1 +1,1 @@
-export type { AppRouter } from "../../api/index.ts";
+export type { AppRouter } from "../../api/trpc/routers/index.ts";
