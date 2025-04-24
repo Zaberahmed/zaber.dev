@@ -17,7 +17,7 @@
   "workspace": ["apps/api", "apps/shared", "apps/web"],
 
   "deploy": {
-    "project": "zaber",
+    "project": "zaber-api",
     "exclude": ["**/node_modules"],
     "include": ["apps/api", "apps/shared"],
     "entrypoint": "apps/api/index.ts"
