@@ -8,11 +8,13 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://zaber-api.deno.dev",
+        target: Deno.env.get("VITE_API_URL") || "http://localhost:6200",
         changeOrigin: true,
       },
     },
   },
+  envDir: "../../",
+
   build: {
     // Generate static assets in the dist folder
     outDir: "dist",

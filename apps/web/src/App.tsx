@@ -4,12 +4,13 @@ import reactLogo from "./assets/react.svg";
 
 function App() {
   const [count, setCount] = useState(0);
+  console.log("VITE_API_URL", import.meta.env.VITE_API_URL);
 
   useEffect(() => {
     const fetchHello = async () => {
-      const response = await fetch("https://zaber-api.deno.dev/hello");
+      const response = await fetch("http://localhost:6200/hello");
       const data = await response.json();
-      console.log(data);
+      console.log("data", data);
     };
     fetchHello();
   }, []);
