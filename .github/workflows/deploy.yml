@@ -23,16 +23,8 @@ jobs:
         with:
           deno-version: v2.x
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-
-      - name: Install dependencies
-        run: "npm install"
-
       - name: Build web app
-        run: "cd apps/web && npm run build"
+        run: "cd apps/web && deno task build"
 
       - name: Deploy API to Deno Deploy
         uses: denoland/deployctl@v1
