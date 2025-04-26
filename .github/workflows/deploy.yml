@@ -33,7 +33,6 @@ jobs:
           entrypoint: "apps/api/index.ts"
           include: "apps/api, apps/shared"
           exclude: "**/node_modules"
-          token: ${{ secrets.DENO_DEPLOY_TOKEN }}
 
       - name: Deploy Web to Deno Deploy
         uses: denoland/deployctl@v1
@@ -42,4 +41,3 @@ jobs:
           entrypoint: "apps/web/server.ts"
           include: "apps/web, apps/shared"
           exclude: "**/node_modules"
-          token: ${{ secrets.DENO_DEPLOY_TOKEN }}
