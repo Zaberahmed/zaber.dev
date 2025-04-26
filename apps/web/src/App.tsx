@@ -4,6 +4,9 @@ import reactLogo from "./assets/react.svg";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [data, setData] = useState<{
+    result: { data: { greeting: string } };
+  } | null>(null);
   console.log("VITE_API_URL", import.meta.env.VITE_API_URL);
 
   useEffect(() => {
@@ -11,6 +14,7 @@ function App() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/hello`);
       const data = await response.json();
       console.log("data", data);
+      setData(data);
     };
     fetchHello();
   }, []);
@@ -27,6 +31,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      {data?.result && <h2>{data.result.data.greeting}</h2>}
       <div className="card">
         <button type="button" onClick={() => setCount((count) => count + 1)}>
           count is {count}

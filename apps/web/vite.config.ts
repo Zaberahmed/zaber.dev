@@ -13,7 +13,6 @@ export default defineConfig({
       },
     },
   },
-  envDir: "../../",
 
   build: {
     // Generate static assets in the dist folder
