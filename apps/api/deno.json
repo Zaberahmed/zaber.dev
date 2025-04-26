@@ -5,7 +5,7 @@
     "./trpc": "./trpc/index.ts"
   },
   "tasks": {
-    "dev": "deno run --allow-env --allow-net --watch index.ts"
+    "dev": "deno run --allow-env --allow-net --allow-read --env-file=.env.local --watch index.ts"
   },
   "imports": {
     "@shared/": "../shared/",
