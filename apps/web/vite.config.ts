@@ -6,7 +6,7 @@ import { defineConfig, loadEnv } from "vite";
 // https://vite.dev/config/
 export default ({ mode }: { mode: string }) => {
   // Load environment variables from .env file
-  const root = path.resolve(__dirname, "../../");
+  const root = path.resolve(__dirname, mode === "dev" ? "../../" : "");
   const env = loadEnv(mode, root, "");
 
   return defineConfig({
