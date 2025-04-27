@@ -25,6 +25,8 @@ jobs:
 
       - name: Build web app
         run: "cd apps/web && deno task build"
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
       - name: Deploy API to Deno Deploy
         uses: denoland/deployctl@v1
@@ -39,5 +41,5 @@ jobs:
         with:
           project: "zaber"
           entrypoint: "apps/web/server.ts"
-          include: "./, apps/web, apps/shared"
+          include: "apps/web, apps/shared"
           exclude: "**/node_modules"
