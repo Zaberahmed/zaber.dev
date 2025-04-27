@@ -7,8 +7,8 @@ export const createServer = () => {
    * Create HTTP server
    * @see https://trpc.io/docs/adapters/standalone
    */
-  const port = Deno.env.get("WEB_LOCAL_PORT") || 5173;
-  const web_url = Deno.env.get("WEB_URL");
+  const port = Deno.env.get("VITE_WEB_LOCAL_PORT") || 5173;
+  const web_url = Deno.env.get("VITE_WEB_URL");
   const allowedOrigin = web_url || `http://127.0.0.1:${port}`;
 
   return createHTTPServer({
