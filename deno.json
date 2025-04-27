@@ -29,7 +29,7 @@
     "web": {
       "project": "zaber",
       "exclude": ["**/node_modules"],
-      "include": ["./.env", "apps/web", "apps/shared"],
+      "include": ["apps/web", "apps/shared"],
       "entrypoint": "apps/web/server.ts"
     }
   }
