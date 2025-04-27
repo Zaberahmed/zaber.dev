@@ -10,6 +10,7 @@ export const createServer = () => {
   const port = Deno.env.get("WEB_LOCAL_PORT") || 5173;
   const web_url = Deno.env.get("WEB_URL");
   const allowedOrigin = web_url || `http://127.0.0.1:${port}`;
+  console.log("allowedOrigin", allowedOrigin);
 
   return createHTTPServer({
     router: appRouter,
