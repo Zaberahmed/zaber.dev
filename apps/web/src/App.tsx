@@ -10,10 +10,14 @@ function App() {
 
   useEffect(() => {
     const fetchHello = async () => {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/hello`);
-      const data = await response.json();
-      console.log("data", data);
-      setData(data);
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/hello`);
+        const data = await response.json();
+        console.log("data", data);
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     fetchHello();
   }, []);
