@@ -8,6 +8,9 @@ export default ({ mode }: { mode: string }) => {
   // Load environment variables from .env file
   const root = path.resolve(__dirname, mode === "dev" ? "../../" : "");
   const env = loadEnv(mode, root, "");
+  console.log("root", root);
+  console.log("mode", mode);
+  console.log("env", env);
 
   return defineConfig({
     plugins: [deno(), react()],
