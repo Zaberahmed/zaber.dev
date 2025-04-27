@@ -6,25 +6,36 @@ import { defineConfig, loadEnv } from "vite";
 // https://vite.dev/config/
 export default ({ mode }: { mode: string }) => {
   // Load environment variables from .env file
-  const root = path.resolve(__dirname, mode === "dev" ? "../../" : "");
+  const root = path.resolve(__dirname, "../../");
   const env = loadEnv(mode, root, "");
   console.log("root", root);
   console.log("mode", mode);
   console.log("env", env);
+
+  // Default API URL for production if not provided in env
+  const apiUrl =
+    env.VITE_API_URL ||
+    (mode === "production"
+      ? "https://zaber-api.deno.dev"
+      : "http://localhost:6200");
+
+  console.log("apiUrl:", apiUrl);
 
   return defineConfig({
     plugins: [deno(), react()],
     server: {
       proxy: {
         "/api": {
-          target: env.VITE_API_URL || "http://localhost:6200",
+          target: apiUrl,
           changeOrigin: true,
         },
       },
     },
     envDir: root,
     define: {
-      __APP_ENV__: JSON.stringify(env.APP_ENV),
+      // Explicitly define environment variables for the client
+      "import.meta.env.VITE_API_URL": JSON.stringify(apiUrl),
+      __APP_ENV__: JSON.stringify(env.APP_ENV || mode),
     },
 
     build: {
