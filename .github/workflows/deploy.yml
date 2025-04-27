@@ -39,5 +39,5 @@ jobs:
         with:
           project: "zaber"
           entrypoint: "apps/web/server.ts"
-          include: "./"
+          include: "./, apps/web, apps/shared"
           exclude: "**/node_modules"
