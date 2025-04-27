@@ -14,6 +14,9 @@ export default defineConfig({
     },
   },
 
+  envDir: "../../",
+  envPrefix: "VITE_",
+
   build: {
     // Generate static assets in the dist folder
     outDir: "dist",

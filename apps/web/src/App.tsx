@@ -8,6 +8,8 @@ function App() {
     result: { data: { greeting: string } };
   } | null>(null);
   console.log("VITE_API_URL", import.meta.env.VITE_API_URL);
+  console.log("WEB_URL", import.meta.env.WEB_URL);
+  console.log("directory", import.meta.dirname);
 
   useEffect(() => {
     const fetchHello = async () => {
