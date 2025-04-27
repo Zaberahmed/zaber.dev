@@ -21,6 +21,7 @@ export default () => {
         },
       },
     },
+    envDir: "../../",
 
     build: {
       // Generate static assets in the dist folder
