@@ -1,27 +1,28 @@
-import { defineConfig, loadEnv } from "vite";
-import process from "node:process";
 import deno from "@deno/vite-plugin";
 import react from "@vitejs/plugin-react-swc";
+import path from "node:path";
+import { defineConfig, loadEnv } from "vite";
 
 // https://vite.dev/config/
-export default () => {
+export default ({ mode }: { mode: string }) => {
   // Load environment variables from .env file
-  process.env = {
-    ...process.env,
-    ...loadEnv("", process.cwd() + "../../", "VITE_"),
-  };
-  console.log("VITE_API_URL", process.env.VITE_API_URL);
+  const root = path.resolve(__dirname, "../../");
+  const env = loadEnv(mode, root, "");
+
   return defineConfig({
     plugins: [deno(), react()],
     server: {
       proxy: {
         "/api": {
-          target: Deno.env.get("VITE_API_URL") || "http://localhost:6200",
+          target: env.VITE_API_URL || "http://localhost:6200",
           changeOrigin: true,
         },
       },
     },
-    envDir: "../../",
+    envDir: root,
+    define: {
+      __APP_ENV__: JSON.stringify(env.APP_ENV),
+    },
 
     build: {
       // Generate static assets in the dist folder

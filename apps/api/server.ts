@@ -10,8 +10,6 @@ export const createServer = () => {
   const port = Deno.env.get("WEB_LOCAL_PORT") || 5173;
   const web_url = Deno.env.get("WEB_URL");
   const allowedOrigin = web_url || `http://127.0.0.1:${port}`;
-  console.log("web_url", web_url);
-  console.log("vite_api_url", Deno.env.get("VITE_API_URL"));
 
   return createHTTPServer({
     router: appRouter,

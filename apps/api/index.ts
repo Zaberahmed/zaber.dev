@@ -3,7 +3,10 @@ import { createServer } from "./server.ts";
 
 const server = createServer();
 const port = Deno.env.get("API_LOCAL_PORT") || 3000;
+const denoDeploymentId = Deno.env.get("DENO_DEPLOYMENT_ID");
 
 server.listen(port, () => {
-  console.log(`🚀 Server is running on http://localhost:${port}`);
+  if (!denoDeploymentId) {
+    console.log(`🚀 Server is running on http://localhost:${port}`);
+  }
 });
