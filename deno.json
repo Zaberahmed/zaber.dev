@@ -4,7 +4,7 @@
     "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts",
 
     "dev:web": "cd apps/web && deno run -A --node-modules-dir npm:vite --mode dev",
-    "build:web": "cd apps/web && deno run -A --node-modules-dir npm:vite build",
+    "build:web": "cd apps/web && deno run -A --node-modules-dir npm:vite build --mode production",
     "preview:web": "cd apps/web && deno run -A --node-modules-dir npm:vite preview",
     "serve:web": "cd apps/web && deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
     "deploy:web": "deployctl deploy --project=zaber --prod apps/web/server.ts",
