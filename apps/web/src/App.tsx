@@ -21,7 +21,7 @@ function App() {
     };
     fetchHello();
   }, []);
-
+  console.log("env mode", import.meta.env.MODE);
   return (
     <>
       <img src="/vite-deno.svg" alt="Vite with Deno" />
