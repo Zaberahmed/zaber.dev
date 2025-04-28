@@ -1,13 +1,13 @@
 {
   "tasks": {
-    "dev:api": "deno run --allow-env --allow-net --allow-read --env-file=.env.dev --watch apps/api/index.ts",
-    "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts",
+    "dev:api": "deno run -A --env-file=.env.dev --watch apps/api/index.ts",
+    "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production",
 
     "dev:web": "cd apps/web && deno run -A --node-modules-dir npm:vite --mode dev",
     "build:web": "cd apps/web && deno run -A --node-modules-dir npm:vite build --mode production",
     "preview:web": "cd apps/web && deno run -A --node-modules-dir npm:vite preview",
     "serve:web": "cd apps/web && deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
-    "deploy:web": "deployctl deploy --project=zaber --prod apps/web/server.ts",
+    "deploy:web": "deployctl deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production",
 
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",

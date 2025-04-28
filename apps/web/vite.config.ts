@@ -9,12 +9,7 @@ export default ({ mode }: { mode: string }) => {
   const root = path.resolve(__dirname, "../../");
   const env = loadEnv(mode, root, "");
 
-  // Default API URL for production if not provided in env
-  const apiUrl =
-    env.VITE_API_URL ||
-    (mode === "production"
-      ? "https://zaber-api.deno.dev"
-      : "http://localhost:6200");
+  const apiUrl = env.VITE_API_URL;
 
   return defineConfig({
     plugins: [deno(), react()],
@@ -29,7 +24,7 @@ export default ({ mode }: { mode: string }) => {
     envDir: root,
     define: {
       // Explicitly define environment variables for the client
-      "import.meta.env.VITE_API_URL": JSON.stringify(apiUrl),
+      // "import.meta.env.VITE_API_URL": JSON.stringify(apiUrl),
       __APP_ENV__: JSON.stringify(env.APP_ENV || mode),
     },
 
