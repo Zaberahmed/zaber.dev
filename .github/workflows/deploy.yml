@@ -24,6 +24,9 @@ jobs:
           deno-version: v2.x
 
       - name: Build web app
+        env:
+          VITE_API_URL: ${{ env.VITE_API_URL }}
+          WEB_URL: ${{ env.WEB_URL }}
         run: "cd apps/web && deno task build"
 
       - name: Deploy API to Deno Deploy
