@@ -1,13 +1,13 @@
 {
   "tasks": {
-    "dev:api": "deno run -A --env-file=.env.dev --watch apps/api/index.ts",
-    "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production",
+    "dev:api": "deno task --cwd=apps/api dev",
+    "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production --include=apps/api,apps/shared --exclude=node_modules",
 
-    "dev:web": "cd apps/web && deno run -A --node-modules-dir npm:vite --mode dev",
-    "build:web": "cd apps/web && deno run -A --node-modules-dir npm:vite build --mode production",
-    "preview:web": "cd apps/web && deno run -A --node-modules-dir npm:vite preview --mode production",
-    "serve:web": "cd apps/web && deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
-    "deploy:web": "deno task build:web && deployctl deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production",
+    "dev:web": "deno task --cwd=apps/web dev",
+    "build:web": "deno task --cwd=apps/web build",
+    "preview:web": "deno task --cwd=apps/web preview",
+    "serve:web": "deno task --cwd=apps/web serve",
+    "deploy:web": "deno task build:web && deployctl deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production --include=apps/web,apps/shared --exclude=node_modules",
 
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",

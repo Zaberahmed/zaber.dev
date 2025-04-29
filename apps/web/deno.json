@@ -9,7 +9,7 @@
   "tasks": {
     "dev": "deno run -A --node-modules-dir npm:vite --mode dev",
     "build": "deno run -A --node-modules-dir npm:vite build --mode production",
-    "preview": "deno run -A --node-modules-dir npm:vite preview",
+    "preview": "deno run -A --node-modules-dir npm:vite preview --mode production",
     "serve": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/"
   },
   "compilerOptions": {
@@ -27,5 +27,11 @@
     "react": "npm:react@^19.0.0",
     "react-dom": "npm:react-dom@^19.0.0",
     "vite": "npm:vite@^6.1.1"
+  },
+  "deploy": {
+    "project": "zaber",
+    "exclude": ["**/node_modules"],
+    "include": ["apps/web", "apps/shared"],
+    "entrypoint": "apps/web/server.ts"
   }
 }

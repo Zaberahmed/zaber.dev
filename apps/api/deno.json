@@ -5,10 +5,16 @@
     "./trpc": "./trpc/index.ts"
   },
   "tasks": {
-    "dev": "deno run --allow-env --allow-net --allow-read --env-file=.env.local --watch index.ts"
+    "dev": "deno run --allow-env --allow-net --allow-read --env-file=.env.dev --watch index.ts"
   },
   "imports": {
     "@shared/": "../shared/",
     "@trpc/server": "npm:@trpc/server@^11.0.0"
+  },
+  "deploy": {
+    "project": "zaber-api",
+    "exclude": ["**/node_modules"],
+    "include": ["apps/api", "apps/shared"],
+    "entrypoint": "apps/api/index.ts"
   }
 }
