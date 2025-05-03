@@ -1,27 +1,13 @@
+import { useState } from "react";
 import "./App.css";
-import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
+import { trpc } from "./configs/trpc.ts";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [data, setData] = useState<{
-    result: { data: { greeting: string } };
-  } | null>(null);
 
-  useEffect(() => {
-    const fetchHello = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/hello`);
-        const data = await response.json();
+  const { data, error, isLoading } = trpc.hello.useQuery();
 
-        setData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchHello();
-  }, []);
-  console.log("env mode", import.meta.env.MODE);
   return (
     <>
       <img src="/vite-deno.svg" alt="Vite with Deno" />
@@ -33,8 +19,17 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      {data?.result && <h2>{data.result.data.greeting}</h2>}
+      <h1>Vite + React + tRPC</h1>
+
+      {isLoading && <p>Loading tRPC data...</p>}
+      {error && (
+        <div className="error">
+          <h3>Error from tRPC:</h3>
+          <pre>{JSON.stringify(error, null, 2)}</pre>
+        </div>
+      )}
+      {data && <h2>tRPC Response: {data.greeting}</h2>}
+
       <div className="card">
         <button type="button" onClick={() => setCount((count) => count + 1)}>
           count is {count}

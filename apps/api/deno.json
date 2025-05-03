@@ -9,7 +9,9 @@
   },
   "imports": {
     "@shared/": "../shared/",
-    "@trpc/server": "npm:@trpc/server@^11.0.0"
+    "@trpc/server": "npm:@trpc/server@^11.1.2",
+    "@types/cors": "npm:@types/cors@^2.8.17",
+    "cors": "npm:cors@^2.8.5"
   },
   "deploy": {
     "project": "zaber-api",

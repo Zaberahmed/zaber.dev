@@ -20,7 +20,12 @@
   },
 
   "imports": {
+    "@shared/": "../shared/",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.4",
+    "@tanstack/react-query": "npm:@tanstack/react-query@^5.75.1",
+    "@trpc/client": "npm:@trpc/client@^11.1.2",
+    "@trpc/react-query": "npm:@trpc/react-query@^11.1.2",
+    "@trpc/tanstack-react-query": "npm:@trpc/tanstack-react-query@^11.1.2",
     "@types/react": "npm:@types/react@^19.0.10",
     "@types/react-dom": "npm:@types/react-dom@^19.0.4",
     "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@^3.8.0",
