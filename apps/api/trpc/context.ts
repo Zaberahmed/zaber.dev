@@ -12,7 +12,8 @@ export async function createContext(opts: CreateNextContextOptions) {
   };
 
   // Extract token from Authorization header
-  const authHeader = req.headers.get("authorization");
+
+  const authHeader = req.headers["authorization"];
   if (!authHeader?.startsWith("Bearer ")) {
     return ctx;
   }
