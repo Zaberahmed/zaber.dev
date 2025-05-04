@@ -24,6 +24,7 @@ const DEFAULT_DATABASE_URL =
 
 const DATABASE_CONNECTION_STRING =
   Deno.env.get("DATABASE_URL") || DEFAULT_DATABASE_URL;
+
 export {
   TimeConstants,
   JWT_SECRET,
