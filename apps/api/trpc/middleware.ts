@@ -1,4 +1,5 @@
 import { TRPCError } from "@trpc/server";
+import { t } from "./init.ts";
 
 /**
  * Middleware that checks if user is authenticated

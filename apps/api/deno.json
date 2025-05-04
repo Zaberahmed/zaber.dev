@@ -5,7 +5,7 @@
     "./trpc": "./trpc/index.ts"
   },
   "tasks": {
-    "dev": "deno run --allow-env --allow-net --allow-read --env-file=.env.dev --watch index.ts",
+    "dev": "deno run --allow-env --allow-net --allow-read --allow-ffi --env-file=.env.dev --watch index.ts",
     "db:generate": "deno run -A npm:drizzle-kit generate:pg",
     "db:migrate": "deno run -A db/migrate.ts"
   },
