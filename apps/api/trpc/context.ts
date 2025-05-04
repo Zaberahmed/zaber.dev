@@ -1,18 +1,12 @@
-import type { Session } from "@shared/types/index.ts";
+import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { verifyToken } from "../utils/auth.ts";
 
-export interface Context {
-  session: Session | null;
-  req: Request;
-}
+export type TContext = Awaited<ReturnType<typeof createContext>>;
 
-export async function createContext({
-  req,
-}: {
-  req: Request;
-}): Promise<Context> {
+export async function createContext(opts: CreateNextContextOptions) {
+  const { req } = opts;
   // Initialize with null session
-  const ctx: Context = {
+  const ctx = {
     session: null,
     req,
   };

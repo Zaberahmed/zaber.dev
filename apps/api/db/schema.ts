@@ -1,17 +1,14 @@
+import { relations } from "drizzle-orm";
 import {
-  pgTable,
-  serial,
-  text,
-  varchar,
-  timestamp,
   boolean,
   integer,
-  json,
-  uuid,
+  pgTable,
   primaryKey,
-  foreignKey,
+  text,
+  timestamp,
+  uuid,
+  varchar,
 } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
 
 // Users table
 export const users = pgTable("Users", {
