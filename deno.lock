@@ -18,6 +18,7 @@
     "npm:autoprefixer@^10.4.19": "10.4.21_postcss@8.5.3",
     "npm:bcrypt@^5.1.1": "5.1.1",
     "npm:cors@^2.8.5": "2.8.5",
+    "npm:drizzle-kit@*": "0.20.18_hono@4.7.8_zod@3.24.2_esbuild@0.19.12",
     "npm:drizzle-kit@~0.20.10": "0.20.18_hono@4.7.8_zod@3.24.2_esbuild@0.19.12",
     "npm:drizzle-orm@~0.29.3": "0.29.5_@types+react@19.1.2_postgres@3.4.5_react@19.1.0",
     "npm:jose@^5.2.0": "5.10.0",

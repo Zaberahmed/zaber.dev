@@ -1,12 +1,11 @@
 import type { Config } from "drizzle-kit";
+import { DATABASE_CONNECTION_STRING } from "./constants/global.constant.ts";
 
 export default {
   schema: "./db/schema.ts",
   out: "./db/migrations",
   driver: "pg",
   dbCredentials: {
-    connectionString:
-      Deno.env.get("DATABASE_URL") ||
-      "postgres://postgres:postgres@localhost:5432/portfolio",
+    connectionString: DATABASE_CONNECTION_STRING,
   },
 } satisfies Config;
