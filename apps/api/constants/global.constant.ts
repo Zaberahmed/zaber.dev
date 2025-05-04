@@ -20,7 +20,8 @@ const ADMIN_SETUP_KEY =
   Deno.env.get("ADMIN_SETUP_KEY") || ADMIN_DEFAULT_SETUP_KEY;
 
 const DEFAULT_DATABASE_URL =
-  "postgres://postgres:postgres@localhost:5432/portfolio";
+  "postgresql://postgres:4913@localhost:5432/portfolio";
+
 const DATABASE_CONNECTION_STRING =
   Deno.env.get("DATABASE_URL") || DEFAULT_DATABASE_URL;
 export {
