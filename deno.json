@@ -1,5 +1,8 @@
 {
   "tasks": {
+    "db:generate": "deno task --cwd=apps/api db:generate",
+    "db:migrate": "deno task --cwd=apps/api db:migrate",
+
     "dev:api": "deno task --cwd=apps/api dev",
     "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production --include=apps/api,apps/shared --exclude=node_modules",
 
