@@ -107,9 +107,67 @@ export const userProfile = pgTable("UserProfile", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+// Blogs table
+export const blogs = pgTable("Blogs", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: varchar("title", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  summary: text("summary").notNull(),
+  content: text("content").notNull(),
+  thumbnailUrl: varchar("thumbnail_url", { length: 255 }),
+  externalUrl: varchar("external_url", { length: 255 }),
+  isPublished: boolean("is_published").default(false).notNull(),
+  publishedAt: timestamp("published_at"),
+  tags: text("tags").array(),
+  readTime: integer("read_time"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Education table
+export const education = pgTable("Education", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  institution: varchar("institution", { length: 255 }).notNull(),
+  degree: varchar("degree", { length: 255 }).notNull(),
+  fieldOfStudy: varchar("field_of_study", { length: 255 }),
+  startDate: timestamp("start_date").notNull(),
+  endDate: timestamp("end_date"),
+  isCurrentEducation: boolean("is_current_education").default(false),
+  description: text("description"),
+  logoUrl: varchar("logo_url", { length: 255 }),
+  grade: varchar("grade", { length: 50 }),
+  order: integer("order").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Hobbies table
+export const hobbies = pgTable("Hobbies", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  iconUrl: varchar("icon_url", { length: 255 }),
+  order: integer("order").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // Define relations
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(users, ({ many, one }) => ({
   projects: many(projects),
+  experiences: many(experiences),
+  contactInfo: one(contactInfo, {
+    fields: [users.id],
+    references: [contactInfo.id],
+  }),
+  userProfile: one(userProfile, {
+    fields: [users.id],
+    references: [userProfile.id],
+  }),
+  blogs: many(blogs),
+  education: many(education),
+  hobbies: many(hobbies),
+  skills: many(skills),
 }));
 
 export const projectsRelations = relations(projects, ({ many }) => ({
