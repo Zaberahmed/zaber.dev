@@ -1,20 +1,25 @@
-import type { appRouter } from "./index.ts";
-import type {
-  inferProcedureInput,
-  inferProcedureOutput,
-  inferRouterOutputs,
-  inferRouterInputs,
-} from "@trpc/server";
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+import type { AppRouter } from "./index.ts";
 
-// Export type router type signature, NOT the router itself.
-export type AppRouter = typeof appRouter;
-export type RouterInput = inferRouterInputs<AppRouter>;
-export type RouterOutput = inferRouterOutputs<AppRouter>;
+// Infer router input and output types
+type RouterInput = inferRouterInputs<AppRouter>;
+type RouterOutput = inferRouterOutputs<AppRouter>;
 
-export type TPath = keyof AppRouter["_def"]["procedures"] & string;
-export type ProcedureInput = inferProcedureInput<
-  AppRouter["_def"]["procedures"][TPath]
->;
-export type ProcedureOutput = inferProcedureOutput<
-  AppRouter["_def"]["procedures"][TPath]
->;
+// Helper types for specific procedures
+type ProcedureInput<
+  Router extends keyof RouterInput,
+  Method extends keyof RouterInput[Router]
+> = RouterInput[Router][Method];
+
+type ProcedureOutput<
+  Router extends keyof RouterOutput,
+  Method extends keyof RouterOutput[Router]
+> = RouterOutput[Router][Method];
+
+export type {
+  AppRouter,
+  RouterInput,
+  RouterOutput,
+  ProcedureInput,
+  ProcedureOutput,
+};

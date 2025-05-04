@@ -1,6 +1,7 @@
 import "https://deno.land/std@0.220.1/dotenv/load.ts";
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import { appRouter } from "./trpc/routers/index.ts";
+import { createContext } from "./trpc/context.ts";
 import cors from "cors";
 
 const port = Deno.env.get("WEB_LOCAL_PORT") || 5173;
@@ -23,8 +24,6 @@ export const createServer = () => {
   return createHTTPServer({
     middleware: cors(corsOptions),
     router: appRouter,
-    createContext() {
-      return {};
-    },
+    createContext,
   });
 };

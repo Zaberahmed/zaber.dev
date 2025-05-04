@@ -5,13 +5,22 @@
     "./trpc": "./trpc/index.ts"
   },
   "tasks": {
-    "dev": "deno run --allow-env --allow-net --allow-read --env-file=.env.dev --watch index.ts"
+    "dev": "deno run --allow-env --allow-net --allow-read --env-file=.env.dev --watch index.ts",
+    "db:generate": "deno run -A npm:drizzle-kit generate:pg",
+    "db:migrate": "deno run -A db/migrate.ts"
   },
   "imports": {
     "@shared/": "../shared/",
     "@trpc/server": "npm:@trpc/server@^11.1.2",
     "@types/cors": "npm:@types/cors@^2.8.17",
-    "cors": "npm:cors@^2.8.5"
+    "cors": "npm:cors@^2.8.5",
+    "drizzle-orm": "npm:drizzle-orm@^0.29.3",
+    "drizzle-kit": "npm:drizzle-kit@^0.20.10",
+    "postgres": "npm:postgres@^3.4.3",
+    "zod": "npm:zod@^3.22.4",
+    "bcrypt": "npm:bcrypt@^5.1.1",
+    "@types/bcrypt": "npm:@types/bcrypt@^5.0.2",
+    "jose": "npm:jose@^5.2.0"
   },
   "deploy": {
     "project": "zaber-api",
