@@ -1,8 +1,8 @@
 {
   "name": "@scope/api",
   "exports": {
-    ".": "./index.ts",
-    "./trpc": "./trpc/index.ts"
+    "./routers": "./trpc/routers/index.ts",
+    "./routers/types.ts": "./trpc/routers/types.ts"
   },
   "tasks": {
     "dev": "deno run --allow-env --allow-net --allow-read --allow-ffi --env-file=.env.dev --watch index.ts",
@@ -10,7 +10,6 @@
     "db:migrate": "deno run -A db/migrate.ts"
   },
   "imports": {
-    "@shared/": "../shared/",
     "@trpc/server": "npm:@trpc/server@^11.1.2",
     "@types/cors": "npm:@types/cors@^2.8.17",
     "cors": "npm:cors@^2.8.5",
@@ -25,7 +24,7 @@
   "deploy": {
     "project": "zaber-api",
     "exclude": ["**/node_modules"],
-    "include": ["apps/api", "apps/shared"],
+    "include": ["apps/api"],
     "entrypoint": "apps/api/index.ts"
   }
 }

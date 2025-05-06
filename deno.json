@@ -4,13 +4,13 @@
     "db:migrate": "deno task --cwd=apps/api db:migrate",
 
     "dev:api": "deno task --cwd=apps/api dev",
-    "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production --include=apps/api,apps/shared --exclude=node_modules",
+    "deploy:api": "deployctl deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production --include=apps/api --exclude=node_modules",
 
     "dev:web": "deno task --cwd=apps/web dev",
     "build:web": "deno task --cwd=apps/web build",
     "preview:web": "deno task --cwd=apps/web preview",
     "serve:web": "deno task --cwd=apps/web serve",
-    "deploy:web": "deno task build:web && deployctl deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production --include=apps/web,apps/shared --exclude=node_modules",
+    "deploy:web": "deno task build:web && deployctl deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production --include=apps/web --exclude=node_modules",
 
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",
@@ -20,19 +20,19 @@
   },
   "nodeModulesDir": "auto",
 
-  "workspace": ["apps/api", "apps/shared", "apps/web"],
+  "workspace": ["apps/api", "apps/web"],
 
   "deploy": {
     "api": {
       "project": "zaber-api",
       "exclude": ["**/node_modules"],
-      "include": ["apps/api", "apps/shared"],
+      "include": ["apps/api"],
       "entrypoint": "apps/api/index.ts"
     },
     "web": {
       "project": "zaber",
       "exclude": ["**/node_modules"],
-      "include": ["apps/web", "apps/shared"],
+      "include": ["apps/web"],
       "entrypoint": "apps/web/server.ts"
     }
   }

@@ -3,4 +3,5 @@ interface Session {
   isAdmin: boolean;
   expiresAt: number;
 }
+
 export type { Session };

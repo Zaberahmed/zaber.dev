@@ -1,5 +1,5 @@
 import { SignJWT, jwtVerify } from "jose";
-import type { Session } from "@shared/types/index.ts";
+import type { Session } from "../types/index.ts";
 import { compare, hash } from "bcrypt";
 import {
   JWT_ALGORITHM,
