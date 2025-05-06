@@ -37,7 +37,7 @@
   "deploy": {
     "project": "zaber",
     "exclude": ["**/node_modules"],
-    "include": ["apps/web"],
+    "include": ["apps/web", "packages/**"],
     "entrypoint": "apps/web/server.ts"
   }
 }
