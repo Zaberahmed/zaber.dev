@@ -2,31 +2,35 @@
   "version": "5",
   "specifiers": {
     "npm:@deno/vite-plugin@^1.0.4": "1.0.4_vite@6.3.2__picomatch@4.0.2_@types+node@22.12.0",
-    "npm:@tanstack/react-query@5.75.1": "5.75.1_react@19.1.0",
-    "npm:@tanstack/react-query@^5.75.1": "5.75.1_react@19.1.0",
+    "npm:@tanstack/react-query@5.75.1": "5.75.1_react@19.0.0",
+    "npm:@tanstack/react-query@^5.75.1": "5.75.4_react@19.0.0",
     "npm:@trpc/client@11.1.2": "11.1.2_@trpc+server@11.1.2__typescript@5.8.3_typescript@5.8.3",
     "npm:@trpc/client@^11.1.2": "11.1.2_@trpc+server@11.1.2__typescript@5.8.3_typescript@5.8.3",
-    "npm:@trpc/react-query@^11.1.2": "11.1.2_@tanstack+react-query@5.75.1__react@19.1.0_@trpc+client@11.1.2__@trpc+server@11.1.2___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.2__typescript@5.8.3_react@19.1.0_react-dom@19.1.0__react@19.1.0_typescript@5.8.3",
+    "npm:@trpc/react-query@^11.1.2": "11.1.2_@tanstack+react-query@5.75.4__react@19.0.0_@trpc+client@11.1.2__@trpc+server@11.1.2___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.2__typescript@5.8.3_react@19.0.0_react-dom@19.0.0__react@19.0.0_typescript@5.8.3",
     "npm:@trpc/server@^11.1.2": "11.1.2_typescript@5.8.3",
-    "npm:@trpc/tanstack-react-query@^11.1.2": "11.1.2_@tanstack+react-query@5.75.1__react@19.1.0_@trpc+client@11.1.2__@trpc+server@11.1.2___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.2__typescript@5.8.3_react@19.1.0_react-dom@19.1.0__react@19.1.0_typescript@5.8.3",
+    "npm:@trpc/tanstack-react-query@^11.1.2": "11.1.2_@tanstack+react-query@5.75.4__react@19.0.0_@trpc+client@11.1.2__@trpc+server@11.1.2___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.2__typescript@5.8.3_react@19.0.0_react-dom@19.0.0__react@19.0.0_typescript@5.8.3",
     "npm:@types/bcrypt@^5.0.2": "5.0.2",
     "npm:@types/cors@^2.8.17": "2.8.17",
     "npm:@types/node@*": "22.12.0",
-    "npm:@types/react-dom@^19.0.4": "19.1.2_@types+react@19.1.2",
-    "npm:@types/react@^19.0.10": "19.1.2",
+    "npm:@types/react-dom@19.0.4": "19.0.4_@types+react@19.0.10",
+    "npm:@types/react-dom@^19.0.4": "19.0.4_@types+react@19.0.10",
+    "npm:@types/react@19.0.10": "19.0.10",
+    "npm:@types/react@^19.0.10": "19.0.10",
     "npm:@vitejs/plugin-react-swc@^3.8.0": "3.9.0_vite@6.3.2__picomatch@4.0.2_@types+node@22.12.0",
     "npm:autoprefixer@^10.4.19": "10.4.21_postcss@8.5.3",
     "npm:bcrypt@^5.1.1": "5.1.1",
     "npm:cors@^2.8.5": "2.8.5",
     "npm:drizzle-kit@*": "0.20.18_hono@4.7.8_zod@3.24.2_esbuild@0.19.12",
     "npm:drizzle-kit@~0.20.10": "0.20.18_hono@4.7.8_zod@3.24.2_esbuild@0.19.12",
-    "npm:drizzle-orm@~0.29.3": "0.29.5_@types+react@19.1.2_postgres@3.4.5_react@19.1.0",
+    "npm:drizzle-orm@~0.29.3": "0.29.5_@types+react@19.0.10_postgres@3.4.5_react@19.0.0",
     "npm:jose@^5.2.0": "5.10.0",
     "npm:postcss@^8.4.38": "8.5.3",
     "npm:postgres@^3.4.3": "3.4.5",
-    "npm:react-dom@19": "19.1.0_react@19.1.0",
-    "npm:react-router-dom@^6.22.3": "6.30.0_react@19.1.0_react-dom@19.1.0__react@19.1.0",
-    "npm:react@19": "19.1.0",
+    "npm:react-dom@19": "19.0.0_react@19.0.0",
+    "npm:react-dom@19.0.0": "19.0.0_react@19.0.0",
+    "npm:react-router-dom@^6.22.3": "6.30.0_react@19.0.0_react-dom@19.0.0__react@19.0.0",
+    "npm:react@19": "19.0.0",
+    "npm:react@19.0.0": "19.0.0",
     "npm:tailwindcss@^3.4.3": "3.4.17_postcss@8.5.3",
     "npm:vite@*": "6.3.2_picomatch@4.0.2_@types+node@22.12.0",
     "npm:vite@^6.1.1": "6.3.2_picomatch@4.0.2_@types+node@22.12.0",
@@ -682,10 +686,20 @@
     "@tanstack/query-core@5.75.0": {
       "integrity": "sha512-rk8KQuCdhoRkzjRVF3QxLgAfFUyS0k7+GCQjlGEpEGco+qazJ0eMH6aO1DjDjibH7/ik383nnztua3BG+lOnwg=="
     },
-    "@tanstack/react-query@5.75.1_react@19.1.0": {
+    "@tanstack/query-core@5.75.4": {
+      "integrity": "sha512-pcqOUgWG9oGlzkfRQQMMsEFmtQu0wq81A414CtELZGq+ztVwSTAaoB3AZRAXQJs88LmNMk2YpUKuQbrvzNDyRg=="
+    },
+    "@tanstack/react-query@5.75.1_react@19.0.0": {
       "integrity": "sha512-tN+gG+eXCHYm+VpmdXUP1rfE9LUrRzgYozTkBZtJV1/WFM3vwWNKQC8G6b2RKcs+2cPg+hdToZHZfjL3bF4yIQ==",
       "dependencies": [
-        "@tanstack/query-core",
+        "@tanstack/query-core@5.75.0",
+        "react"
+      ]
+    },
+    "@tanstack/react-query@5.75.4_react@19.0.0": {
+      "integrity": "sha512-Vf65pzYRkf8fk9SP1ncIZjvaXszBhtsvpf+h45Y/9kOywOrVZfBGUpCdffdsVzbmBzmz6TCFes9bM0d3pRrIsA==",
+      "dependencies": [
+        "@tanstack/query-core@5.75.4",
         "react"
       ]
     },
@@ -696,10 +710,10 @@
         "typescript"
       ]
     },
-    "@trpc/react-query@11.1.2_@tanstack+react-query@5.75.1__react@19.1.0_@trpc+client@11.1.2__@trpc+server@11.1.2___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.2__typescript@5.8.3_react@19.1.0_react-dom@19.1.0__react@19.1.0_typescript@5.8.3": {
+    "@trpc/react-query@11.1.2_@tanstack+react-query@5.75.4__react@19.0.0_@trpc+client@11.1.2__@trpc+server@11.1.2___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.2__typescript@5.8.3_react@19.0.0_react-dom@19.0.0__react@19.0.0_typescript@5.8.3": {
       "integrity": "sha512-Ws3oIaj0qqbVIUyfYd9uFBwqk7eRqsxaLhLKN7grskoBo8wkh/CUADcN6ZD+GGogC3Dsg9S4WhgU1jVgfc/ahg==",
       "dependencies": [
-        "@tanstack/react-query",
+        "@tanstack/react-query@5.75.4_react@19.0.0",
         "@trpc/client",
         "@trpc/server",
         "react",
@@ -713,10 +727,10 @@
         "typescript"
       ]
     },
-    "@trpc/tanstack-react-query@11.1.2_@tanstack+react-query@5.75.1__react@19.1.0_@trpc+client@11.1.2__@trpc+server@11.1.2___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.2__typescript@5.8.3_react@19.1.0_react-dom@19.1.0__react@19.1.0_typescript@5.8.3": {
+    "@trpc/tanstack-react-query@11.1.2_@tanstack+react-query@5.75.4__react@19.0.0_@trpc+client@11.1.2__@trpc+server@11.1.2___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.2__typescript@5.8.3_react@19.0.0_react-dom@19.0.0__react@19.0.0_typescript@5.8.3": {
       "integrity": "sha512-c+NupnmIQmwgwYVTaHgDg59BZBtJ6KxqB0cxF9FBhKHPY6PlwGLdU8+mo25C5VIpofZYEII4H7NKE4yKGFSe3w==",
       "dependencies": [
-        "@tanstack/react-query",
+        "@tanstack/react-query@5.75.4_react@19.0.0",
         "@trpc/client",
         "@trpc/server",
         "react",
@@ -745,14 +759,14 @@
         "undici-types"
       ]
     },
-    "@types/react-dom@19.1.2_@types+react@19.1.2": {
-      "integrity": "sha512-XGJkWF41Qq305SKWEILa1O8vzhb3aOo3ogBlSmiqNko/WmRb6QIaweuZCXjKygVDXpzXb5wyxKTSOsmkuqj+Qw==",
+    "@types/react-dom@19.0.4_@types+react@19.0.10": {
+      "integrity": "sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==",
       "dependencies": [
         "@types/react"
       ]
     },
-    "@types/react@19.1.2": {
-      "integrity": "sha512-oxLPMytKchWGbnQM9O7D67uPa9paTNxO7jVoNMXgkkErULBPhPARCfkKL9ytcIJJRGjbsVwW4ugJzyFFvm/Tiw==",
+    "@types/react@19.0.10": {
+      "integrity": "sha512-JuRQ9KXLEjaUNjTWpzuR231Z2WpIwczOkBEIvbHNCzQefFIT0L8IqE6NV6ULLyC1SI/i234JnDoMkfg+RjQj2g==",
       "dependencies": [
         "csstype"
       ]
@@ -1031,7 +1045,7 @@
       ],
       "bin": true
     },
-    "drizzle-orm@0.29.5_@types+react@19.1.2_postgres@3.4.5_react@19.1.0": {
+    "drizzle-orm@0.29.5_@types+react@19.0.10_postgres@3.4.5_react@19.0.0": {
       "integrity": "sha512-jS3+uyzTz4P0Y2CICx8FmRQ1eplURPaIMWDn/yq6k4ShRFj9V7vlJk67lSf2kyYPzQ60GkkNGXcJcwrxZ6QCRw==",
       "dependencies": [
         "@types/react",
@@ -1694,14 +1708,14 @@
     "queue-microtask@1.2.3": {
       "integrity": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
     },
-    "react-dom@19.1.0_react@19.1.0": {
-      "integrity": "sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==",
+    "react-dom@19.0.0_react@19.0.0": {
+      "integrity": "sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==",
       "dependencies": [
         "react",
         "scheduler"
       ]
     },
-    "react-router-dom@6.30.0_react@19.1.0_react-dom@19.1.0__react@19.1.0": {
+    "react-router-dom@6.30.0_react@19.0.0_react-dom@19.0.0__react@19.0.0": {
       "integrity": "sha512-x30B78HV5tFk8ex0ITwzC9TTZMua4jGyA9IUlH1JLQYQTFyxr/ZxwOJq7evg1JX1qGVUcvhsmQSKdPncQrjTgA==",
       "dependencies": [
         "@remix-run/router",
@@ -1710,15 +1724,15 @@
         "react-router"
       ]
     },
-    "react-router@6.30.0_react@19.1.0": {
+    "react-router@6.30.0_react@19.0.0": {
       "integrity": "sha512-D3X8FyH9nBcTSHGdEKurK7r8OYE1kKFn3d/CF+CoxbSHkxU7o37+Uh7eAHRXr6k2tSExXYO++07PeXJtA/dEhQ==",
       "dependencies": [
         "@remix-run/router",
         "react"
       ]
     },
-    "react@19.1.0": {
-      "integrity": "sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg=="
+    "react@19.0.0": {
+      "integrity": "sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ=="
     },
     "read-cache@1.0.0": {
       "integrity": "sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==",
@@ -1802,8 +1816,8 @@
     "safe-buffer@5.2.1": {
       "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="
     },
-    "scheduler@0.26.0": {
-      "integrity": "sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA=="
+    "scheduler@0.25.0": {
+      "integrity": "sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA=="
     },
     "semver@6.3.1": {
       "integrity": "sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==",
@@ -2186,14 +2200,14 @@
           "npm:@trpc/client@^11.1.2",
           "npm:@trpc/react-query@^11.1.2",
           "npm:@trpc/tanstack-react-query@^11.1.2",
-          "npm:@types/react-dom@^19.0.4",
-          "npm:@types/react@^19.0.10",
+          "npm:@types/react-dom@19.0.4",
+          "npm:@types/react@19.0.10",
           "npm:@vitejs/plugin-react-swc@^3.8.0",
           "npm:autoprefixer@^10.4.19",
           "npm:postcss@^8.4.38",
-          "npm:react-dom@19",
+          "npm:react-dom@19.0.0",
           "npm:react-router-dom@^6.22.3",
-          "npm:react@19",
+          "npm:react@19.0.0",
           "npm:tailwindcss@^3.4.3",
           "npm:vite@^6.1.1"
         ]
