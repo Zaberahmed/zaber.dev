@@ -10,7 +10,7 @@
     "build:web": "deno task --cwd=apps/web build",
     "preview:web": "deno task --cwd=apps/web preview",
     "serve:web": "deno task --cwd=apps/web serve",
-    "deploy:web": "deno task build:web && deployctl deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production --include=apps/web --exclude=node_modules",
+    "deploy:web": "deno task build:web && deployctl deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production --include=apps/web,packages/** --exclude=node_modules",
 
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",
@@ -20,7 +20,7 @@
   },
   "nodeModulesDir": "auto",
 
-  "workspace": ["apps/api", "apps/web"],
+  "workspace": ["apps/api", "apps/web", "packages/*"],
 
   "deploy": {
     "api": {
@@ -32,7 +32,7 @@
     "web": {
       "project": "zaber",
       "exclude": ["**/node_modules"],
-      "include": ["apps/web"],
+      "include": ["apps/web", "packages/**"],
       "entrypoint": "apps/web/server.ts"
     }
   }

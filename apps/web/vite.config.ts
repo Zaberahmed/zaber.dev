@@ -25,7 +25,12 @@ export default ({ mode }: { mode: string }) => {
     define: {
       __APP_ENV__: JSON.stringify(env.APP_ENV || mode),
     },
-
+    resolve: {
+      alias: {
+        ui: path.resolve(__dirname, "../../packages/shadcn/src/components/ui"),
+        "@": path.resolve(__dirname, "../../packages/shadcn/src"),
+      },
+    },
     build: {
       // Generate static assets in the dist folder
       outDir: "dist",

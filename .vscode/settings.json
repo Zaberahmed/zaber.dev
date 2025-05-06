@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["asynciterable", "denoland", "deployctl"],
+  "cSpell.words": ["asynciterable", "denoland", "deployctl", "shadcn"],
   "files.associations": {
     "*.css": "tailwindcss"
   }

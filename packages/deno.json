@@ -1,3 +1,7 @@
 {
-  "name": "@scope/packages"
+  "name": "@scope/packages",
+  "exports": {
+    "./shadcn/src/lib/utils": "./shadcn/src/lib/utils.ts",
+    "./shadcn/src/components/ui": "./shadcn/src/components/ui/*"
+  }
 }

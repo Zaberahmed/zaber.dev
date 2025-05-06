@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Button } from "ui/button";
 
 const Home = () => {
   return (
@@ -10,6 +11,9 @@ const Home = () => {
       <Link to="/about" className="text-blue-500 hover:text-blue-700 underline">
         Go to About
       </Link>
+      <div className="mt-4">
+        <Button variant="default">Click Me</Button>
+      </div>
     </div>
   );
 };
