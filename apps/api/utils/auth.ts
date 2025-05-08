@@ -1,10 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 import type { Session } from "../types/index.ts";
-import {
-  JWT_ALGORITHM,
-  JWT_SECRET,
-  TOKEN_EXPIRY,
-} from "../constants/global.constant.ts";
+import { JWT_ALGORITHM, JWT_SECRET, TOKEN_EXPIRY } from "../constants/index.ts";
 
 // Convert string to Uint8Array for JWT signing
 const getSecretKey = () => new TextEncoder().encode(JWT_SECRET);

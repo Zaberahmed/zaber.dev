@@ -1,11 +1,13 @@
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
-import { ADMIN_SETUP_KEY } from "../../constants/global.constant.ts";
 import {
-  ForbiddenMessages,
-  UnauthorizedMessages,
-} from "../../constants/response-messages.constant.ts";
+  ADMIN_SETUP_KEY,
+  AuthSuccessMessages,
+  ForbiddenErrorMessages,
+  UnauthorizedErrorMessages,
+  UserSuccessMessages,
+} from "../../constants/index.ts";
 import { db } from "../../db/index.ts";
 import { users } from "../../db/schema.ts";
 import { createToken, hashPassword, verifyPassword } from "../../utils/auth.ts";
@@ -35,7 +37,7 @@ export const authRouter = router({
       if (!user || !(await verifyPassword(password, user.passwordHash))) {
         throw new TRPCError({
           code: "UNAUTHORIZED",
-          message: UnauthorizedMessages.UNAUTHORIZED_LOGIN,
+          message: UnauthorizedErrorMessages.UNAUTHORIZED_LOGIN,
         });
       }
 
@@ -46,6 +48,8 @@ export const authRouter = router({
       });
 
       return {
+        isSuccess: true,
+        message: AuthSuccessMessages.LOGIN_SUCCESS,
         token,
         user: {
           id: user.id,
@@ -75,6 +79,8 @@ export const authRouter = router({
     }
 
     return {
+      isSuccess: true,
+      message: AuthSuccessMessages.SESSION_SUCCESS,
       user: {
         id: user.id,
         email: user.email,
@@ -103,7 +109,7 @@ export const authRouter = router({
       if (setupKey !== validSetupKey) {
         throw new TRPCError({
           code: "UNAUTHORIZED",
-          message: UnauthorizedMessages.UNAUTHORIZED_SETUP_KEY_MESSAGE,
+          message: UnauthorizedErrorMessages.UNAUTHORIZED_SETUP_KEY_MESSAGE,
         });
       }
 
@@ -116,7 +122,7 @@ export const authRouter = router({
       if (adminCount.length > 0 && adminCount[0].count) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: ForbiddenMessages.FORBIDDEN_USER_ENTRY,
+          message: ForbiddenErrorMessages.FORBIDDEN_USER_ENTRY,
         });
       }
 
@@ -135,7 +141,8 @@ export const authRouter = router({
         .returning();
 
       return {
-        success: true,
+        isSuccess: true,
+        message: UserSuccessMessages.ADMIN_USER_CREATED,
         user: {
           id: newUser[0].id,
           email: newUser[0].email,

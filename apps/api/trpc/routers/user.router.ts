@@ -4,6 +4,12 @@ import { db } from "../../db/index.ts";
 import { users } from "../../db/schema.ts";
 import { eq } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
+import {
+  InternalServerErrorMessages,
+  NotFoundErrorMessages,
+  UnknownErrorMessages,
+  UserSuccessMessages,
+} from "../../constants/index.ts";
 
 /**
  * User router for user related procedures
@@ -29,16 +35,19 @@ export const userRouter = router({
         .from(users);
 
       return {
-        status: "success",
+        isSuccess: true,
+        message: UserSuccessMessages.USER_ALL_RETRIEVED,
         data: allUsers,
         count: allUsers.length,
       };
     } catch (error: unknown) {
       const errorMessage =
-        error instanceof Error ? error.message : "Unknown error occurred";
+        error instanceof Error
+          ? error.message
+          : UnknownErrorMessages.UNKNOWN_ERROR_MESSAGE;
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
-        message: `Failed to retrieve users: ${errorMessage}`,
+        message: `${InternalServerErrorMessages.INTERNAL_SERVER_ERROR_USER}: ${errorMessage}`,
         cause: error,
       });
     }
@@ -68,13 +77,15 @@ export const userRouter = router({
         if (user.length === 0) {
           throw new TRPCError({
             code: "NOT_FOUND",
-            message: `User with ID ${input.id} not found`,
+            message: NotFoundErrorMessages.NOT_FOUND_USER,
           });
         }
 
         return {
-          status: "success",
+          isSuccess: true,
           data: user[0],
+          message: UserSuccessMessages.USER_RETRIEVED,
+          count: user.length,
         };
       } catch (error: unknown) {
         if (error instanceof TRPCError) {
@@ -82,10 +93,12 @@ export const userRouter = router({
         }
 
         const errorMessage =
-          error instanceof Error ? error.message : "Unknown error occurred";
+          error instanceof Error
+            ? error.message
+            : UnknownErrorMessages.UNKNOWN_ERROR_MESSAGE;
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: `Failed to retrieve user: ${errorMessage}`,
+          message: `${InternalServerErrorMessages.INTERNAL_SERVER_ERROR_USER}: ${errorMessage}`,
           cause: error,
         });
       }
@@ -100,16 +113,18 @@ export const userRouter = router({
       await db.delete(users);
 
       return {
-        status: "success",
-        message: `Successfully deleted all users`,
+        isSuccess: true,
+        message: UserSuccessMessages.USER_DELETED_ALL,
         count: userCount.length > 0 ? userCount.length : 0,
       };
     } catch (error: unknown) {
       const errorMessage =
-        error instanceof Error ? error.message : "Unknown error occurred";
+        error instanceof Error
+          ? error.message
+          : UnknownErrorMessages.UNKNOWN_ERROR_MESSAGE;
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
-        message: `Failed to delete users: ${errorMessage}`,
+        message: `${InternalServerErrorMessages.INTERNAL_SERVER_ERROR_USER_DELETE}: ${errorMessage}`,
         cause: error,
       });
     }
@@ -133,7 +148,7 @@ export const userRouter = router({
         if (existingUser.length === 0) {
           throw new TRPCError({
             code: "NOT_FOUND",
-            message: `User with ID ${input.id} not found`,
+            message: NotFoundErrorMessages.NOT_FOUND_USER,
           });
         }
 
@@ -141,8 +156,8 @@ export const userRouter = router({
         await db.delete(users).where(eq(users.id, input.id));
 
         return {
-          status: "success",
-          message: `Successfully deleted user with ID ${input.id}`,
+          isSuccess: true,
+          message: UserSuccessMessages.USER_DELETED,
         };
       } catch (error: unknown) {
         if (error instanceof TRPCError) {
@@ -150,10 +165,12 @@ export const userRouter = router({
         }
 
         const errorMessage =
-          error instanceof Error ? error.message : "Unknown error occurred";
+          error instanceof Error
+            ? error.message
+            : UnknownErrorMessages.UNKNOWN_ERROR_MESSAGE;
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: `Failed to delete user: ${errorMessage}`,
+          message: `${InternalServerErrorMessages.INTERNAL_SERVER_ERROR_USER_DELETE}: ${errorMessage}`,
           cause: error,
         });
       }
