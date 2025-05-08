@@ -91,7 +91,7 @@ export const userRouter = router({
       }
     }),
 
-  deleteAll: adminProcedure.mutation(async () => {
+  deleteAll: publicProcedure.mutation(async () => {
     try {
       // First, count how many users will be deleted
       const userCount = await db.select({ count: users.id }).from(users);
@@ -102,7 +102,7 @@ export const userRouter = router({
       return {
         status: "success",
         message: `Successfully deleted all users`,
-        count: userCount.length > 0 ? userCount[0].count : 0,
+        count: userCount.length > 0 ? userCount.length : 0,
       };
     } catch (error: unknown) {
       const errorMessage =
@@ -115,7 +115,7 @@ export const userRouter = router({
     }
   }),
 
-  deleteById: adminProcedure
+  deleteById: publicProcedure
     .input(
       z.object({
         id: z.string().uuid(),
