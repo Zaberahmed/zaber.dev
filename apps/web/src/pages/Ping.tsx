@@ -15,7 +15,7 @@ const Ping = () => {
       )}
       {data && (
         <h2 className="text-2xl text-green-600">
-          tRPC Response: {data.greeting}
+          tRPC Response: {data?.data?.greeting}
         </h2>
       )}
       <Link to="/" className="text-blue-500 hover:text-blue-700 underline">
