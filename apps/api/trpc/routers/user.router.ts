@@ -91,7 +91,7 @@ export const userRouter = router({
       }
     }),
 
-  deleteAll: publicProcedure.mutation(async () => {
+  deleteAll: adminProcedure.mutation(async () => {
     try {
       // First, count how many users will be deleted
       const userCount = await db.select({ count: users.id }).from(users);
@@ -115,7 +115,7 @@ export const userRouter = router({
     }
   }),
 
-  deleteById: publicProcedure
+  deleteById: adminProcedure
     .input(
       z.object({
         id: z.string().uuid(),
