@@ -4,7 +4,7 @@ import { createServer } from "./server.ts";
 const port = Deno.env.get("API_LOCAL_PORT") || 6200;
 const denoDeploymentId = Deno.env.get("DENO_DEPLOYMENT_ID");
 
-const server = createServer();
+const server = await createServer();
 
 server.listen(port, () => {
   if (!denoDeploymentId) {

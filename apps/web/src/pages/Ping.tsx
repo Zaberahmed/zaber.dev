@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { trpc } from "../configs/trpc.ts";
 
 const Ping = () => {
-  const { data, error, isLoading } = trpc.hello.useQuery();
+  const { data, error, isLoading } = trpc.ping.useQuery();
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">

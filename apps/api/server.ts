@@ -3,6 +3,7 @@ import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import { appRouter } from "./trpc/routers/index.ts";
 import { createContext } from "./trpc/context.ts";
 import cors from "cors";
+import { checkDatabaseConnection } from "./db/index.ts";
 
 const port = Deno.env.get("WEB_LOCAL_PORT") || 5173;
 const web_url = Deno.env.get("WEB_URL");
@@ -15,11 +16,12 @@ const corsOptions = {
   credentials: true,
 };
 
-export const createServer = () => {
+export const createServer = async () => {
   /**
    * Create HTTP server
    * @see https://trpc.io/docs/adapters/standalone
    */
+  await checkDatabaseConnection();
 
   return createHTTPServer({
     middleware: cors(corsOptions),
