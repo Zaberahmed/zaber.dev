@@ -7,7 +7,7 @@ const getSecretKey = () => new TextEncoder().encode(JWT_SECRET);
 
 // Web Crypto API for password hashing (scrypt)
 // Salt is stored as part of the hash string
-export async function hashPassword(password: string): Promise<string> {
+async function hashPassword(password: string): Promise<string> {
   // Generate random salt
   const salt = crypto.getRandomValues(new Uint8Array(16));
 
@@ -44,7 +44,7 @@ export async function hashPassword(password: string): Promise<string> {
   return btoa(String.fromCharCode(...combined));
 }
 
-export async function verifyPassword(
+async function verifyPassword(
   password: string,
   storedHash: string
 ): Promise<boolean> {
@@ -104,7 +104,7 @@ export async function verifyPassword(
   }
 }
 
-export async function createToken(
+async function createToken(
   session: Omit<Session, "expiresAt">
 ): Promise<string> {
   const expiresAt = Math.floor(Date.now() / 1000) + TOKEN_EXPIRY;
@@ -118,7 +118,7 @@ export async function createToken(
   return jwt;
 }
 
-export async function verifyToken(token: string): Promise<Session | null> {
+async function verifyToken(token: string): Promise<Session | null> {
   try {
     const { payload } = await jwtVerify(token, getSecretKey());
 
@@ -133,7 +133,15 @@ export async function verifyToken(token: string): Promise<Session | null> {
   }
 }
 
-export async function verifyAdminToken(token: string): Promise<boolean> {
+async function verifyAdminToken(token: string): Promise<boolean> {
   const session = await verifyToken(token);
   return Boolean(session && session.isAdmin);
 }
+
+export {
+  hashPassword,
+  verifyPassword,
+  createToken,
+  verifyToken,
+  verifyAdminToken,
+};
