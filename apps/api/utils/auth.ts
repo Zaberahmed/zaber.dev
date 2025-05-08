@@ -97,9 +97,9 @@ export async function verifyPassword(
 
     // Time-safe comparison
     let result = 0;
-    for (let i = 0; i < keyArray.length; i++) {
-      result |= keyArray[i] ^ storedKey[i];
-    }
+    keyArray.forEach((value, i) => {
+      result |= value ^ storedKey[i];
+    });
 
     return result === 0;
   } catch (error) {
