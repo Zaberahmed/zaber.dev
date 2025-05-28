@@ -20,7 +20,7 @@
   },
   "nodeModulesDir": "auto",
 
-  "workspace": ["apps/api", "apps/web", "packages/*"],
+  "workspace": ["apps/api", "apps/web", "packages/shadcn"],
 
   "deploy": {
     "api": {
@@ -32,7 +32,7 @@
     "web": {
       "project": "zaber",
       "exclude": ["**/node_modules"],
-      "include": ["apps/web", "packages/**"],
+      "include": ["apps/web", "packages/shadcn"],
       "entrypoint": "apps/web/server.ts"
     }
   }

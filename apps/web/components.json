@@ -5,7 +5,7 @@
   "tsx": true,
   "tailwind": {
     "config": "",
-    "css": "../../packages/ui/src/styles/globals.css",
+    "css": "@packages/shadcn/src/styles/globals.css",
     "baseColor": "zinc",
     "cssVariables": true
   },
@@ -14,7 +14,7 @@
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "utils": "@scope/packages/shadcn/src/lib/utils",
-    "ui": "@scope/packages/shadcn/src/components/ui"
+    "utils": "@packages/shadcn/src/lib/utils",
+    "ui": "@packages/shadcn/src/components/ui"
   }
 }

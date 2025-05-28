@@ -3,9 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "node:path";
 import { defineConfig, loadEnv } from "vite";
 
-// https://vite.dev/config/
 export default ({ mode }: { mode: string }) => {
-  // Load environment variables from .env file
   const root = path.resolve(__dirname, "../../");
   const env = loadEnv(mode, root, "");
 
@@ -25,12 +23,7 @@ export default ({ mode }: { mode: string }) => {
     define: {
       __APP_ENV__: JSON.stringify(env.APP_ENV || mode),
     },
-    resolve: {
-      alias: {
-        ui: path.resolve(__dirname, "../../packages/shadcn/src/components/ui"),
-        "@": path.resolve(__dirname, "../../packages/shadcn/src"),
-      },
-    },
+
     build: {
       // Generate static assets in the dist folder
       outDir: "dist",
