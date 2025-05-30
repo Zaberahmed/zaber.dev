@@ -9,6 +9,16 @@
     "@radix-ui/react-slot": "npm:@radix-ui/react-slot@^1.0.2",
     "class-variance-authority": "npm:class-variance-authority@^0.7.0",
     "clsx": "npm:clsx@^2.0.0",
-    "tailwind-merge": "npm:tailwind-merge@^2.2.0"
+    "tailwind-merge": "npm:tailwind-merge@^2.2.0",
+    "@/lib/utils": "./src/lib/utils.ts"
+  },
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   }
 }
