@@ -5,10 +5,10 @@ import { handleProcedure } from "../utils/response.ts";
 import * as schema from "./schema.ts";
 
 // Get database connection details from environment variables
-const connectionString = DATABASE_CONNECTION_STRING;
+const dbConnectionString = DATABASE_CONNECTION_STRING;
 
 // Create a postgres connection
-const client = postgres(connectionString, {
+const client = postgres(dbConnectionString, {
   max: 10, // Maximum number of connections
 });
 
@@ -18,7 +18,7 @@ export function checkDatabaseConnection(): Promise<boolean> {
     // Simple query to check if database is accessible
     await client`SELECT 1`;
     return true;
-  });
+  }, "connect to database");
 }
 
 // Create Drizzle ORM instance with our schema

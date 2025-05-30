@@ -16,6 +16,7 @@ const InternalServerErrorMessages = {
   INTERNAL_SERVER_ERROR_MESSAGE: "An internal server error occurred.",
   INTERNAL_SERVER_ERROR_USER: "Failed to retrieve user.",
   INTERNAL_SERVER_ERROR_USER_DELETE: "Failed to delete users.",
+  INTERNAL_SERVER_ERROR_DATABASE_CONNECTION: "Failed to connect to database.",
 };
 
 const NotFoundErrorMessages = {
