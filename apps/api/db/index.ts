@@ -6,11 +6,11 @@ import * as schema from "./schema.ts";
 
 // Get database connection details from environment variables
 const dbConnectionString = DATABASE_CONNECTION_STRING;
-console.log("Database connection string:", dbConnectionString);
+
 // Create a postgres connection
 const client = postgres(dbConnectionString, {
   max: 10, // Maximum number of connections
-  connect_timeout: 50,
+  connect_timeout: 60, // Timeout for establishing a connection
 });
 
 // Function to check database connection
@@ -18,7 +18,6 @@ export function checkDatabaseConnection(): Promise<boolean> {
   return handleProcedure(async () => {
     // Simple query to check if database is accessible
     await client`SELECT 1`;
-    console.log("Database connection successful");
     return true;
   }, "connect to database");
 }
