@@ -12,14 +12,16 @@ const dbConnectionString = DATABASE_CONNECTION_STRING;
 const isProductionEnv = DEPLOYMENT_ENV === "production";
 
 // Create a postgres connection
-const client = postgres(dbConnectionString, {
+export const client = postgres(dbConnectionString, {
   max: 10, // Maximum number of connections
   connect_timeout: 60, // Timeout for establishing a connection
   ssl: isProductionEnv ? "require" : false, // Use SSL in production
 });
 
 // Function to check database connection
-export function checkDatabaseConnection(): Promise<boolean> {
+export function checkDatabaseConnection(
+  client: postgres.Sql<Record<PropertyKey, never>>
+): Promise<boolean> {
   return handleProcedure(async () => {
     // Simple query to check if database is accessible
     await client`SELECT 1`;
