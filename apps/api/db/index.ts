@@ -17,6 +17,7 @@ export function checkDatabaseConnection(): Promise<boolean> {
   return handleProcedure(async () => {
     // Simple query to check if database is accessible
     await client`SELECT 1`;
+    console.log("Database connection successful");
     return true;
   }, "connect to database");
 }
