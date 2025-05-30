@@ -6,7 +6,7 @@ import * as schema from "./schema.ts";
 
 // Get database connection details from environment variables
 const dbConnectionString = DATABASE_CONNECTION_STRING;
-
+console.log("Database connection string:", dbConnectionString);
 // Create a postgres connection
 const client = postgres(dbConnectionString, {
   max: 10, // Maximum number of connections
