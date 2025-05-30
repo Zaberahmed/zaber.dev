@@ -10,6 +10,7 @@ console.log("Database connection string:", dbConnectionString);
 // Create a postgres connection
 const client = postgres(dbConnectionString, {
   max: 10, // Maximum number of connections
+  connect_timeout: 50,
 });
 
 // Function to check database connection
