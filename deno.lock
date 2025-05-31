@@ -1,6 +1,12 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@db/postgres@*": "0.19.5",
+    "jsr:@std/bytes@^1.0.5": "1.0.6",
+    "jsr:@std/crypto@^1.0.4": "1.0.5",
+    "jsr:@std/encoding@^1.0.9": "1.0.10",
+    "jsr:@std/fmt@^1.0.6": "1.0.8",
+    "jsr:@std/path@^1.0.8": "1.1.0",
     "npm:@deno/vite-plugin@^1.0.4": "1.0.4_vite@6.3.5__picomatch@4.0.2_@types+node@22.15.15",
     "npm:@radix-ui/react-slot@^1.0.2": "1.2.3_@types+react@19.0.10_react@19.0.0",
     "npm:@radix-ui/react-slot@^1.2.2": "1.2.3_@types+react@19.0.10_react@19.0.0",
@@ -38,6 +44,33 @@
     "npm:vite@*": "6.3.5_picomatch@4.0.2_@types+node@22.15.15",
     "npm:vite@^6.1.1": "6.3.5_picomatch@4.0.2_@types+node@22.15.15",
     "npm:zod@^3.22.4": "3.25.32"
+  },
+  "jsr": {
+    "@db/postgres@0.19.5": {
+      "integrity": "afdbe608bd066cda2ee5dba37c416d332098b9238c51aec223331108e281954c",
+      "dependencies": [
+        "jsr:@std/bytes",
+        "jsr:@std/crypto",
+        "jsr:@std/encoding",
+        "jsr:@std/fmt",
+        "jsr:@std/path"
+      ]
+    },
+    "@std/bytes@1.0.6": {
+      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
+    "@std/crypto@1.0.5": {
+      "integrity": "0dcfbb319fe0bba1bd3af904ceb4f948cde1b92979ec1614528380ed308a3b40"
+    },
+    "@std/encoding@1.0.10": {
+      "integrity": "8783c6384a2d13abd5e9e87a7ae0520a30e9f56aeeaa3bdf910a3eaaf5c811a1"
+    },
+    "@std/fmt@1.0.8": {
+      "integrity": "71e1fc498787e4434d213647a6e43e794af4fd393ef8f52062246e06f7e372b7"
+    },
+    "@std/path@1.1.0": {
+      "integrity": "ddc94f8e3c275627281cbc23341df6b8bcc874d70374f75fec2533521e3d6886"
+    }
   },
   "npm": {
     "@alloc/quick-lru@5.2.0": {
