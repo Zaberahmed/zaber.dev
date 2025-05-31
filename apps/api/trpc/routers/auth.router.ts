@@ -8,7 +8,7 @@ import {
   UnauthorizedErrorMessages,
   UserSuccessMessages,
 } from "../../constants/index.ts";
-import { db } from "../../db/index.ts";
+import { db, newClient } from "../../db/index.ts";
 import { users } from "../../db/schema.ts";
 import {
   createToken,
@@ -121,13 +121,13 @@ export const authRouter = router({
           });
         }
 
-        // Check if any admin user already exists
-        const adminCount = await db
-          .select({ count: users.id })
-          .from(users)
-          .where(eq(users.isAdmin, true));
+        // Check if any admin user already exists using newClient
+        const adminCountResult = await newClient.queryArray(
+          `SELECT COUNT(*) FROM "Users" WHERE is_admin = true`
+        );
+        const adminCount = adminCountResult.rows[0][0] as number;
 
-        if (adminCount.length > 0 && adminCount[0].count) {
+        if (adminCount > 0) {
           throw new TRPCError({
             code: "FORBIDDEN",
             message: ForbiddenErrorMessages.FORBIDDEN_USER_ENTRY,
@@ -137,24 +137,24 @@ export const authRouter = router({
         // Hash the password
         const passwordHash = await hashPassword(password);
 
-        // Create the admin user
-        const newUser = await db
-          .insert(users)
-          .values({
-            email,
-            passwordHash,
-            name,
-            isAdmin: true,
-          })
-          .returning();
+        // Create the admin user using newClient
+        const insertResult = await newClient.queryArray(
+          `INSERT INTO "Users" (email, password_hash, name, is_admin, created_at, updated_at)
+           VALUES ($1, $2, $3, $4, NOW(), NOW())
+           RETURNING id, email, name, is_admin`,
+          [email, passwordHash, name, true]
+        );
+
+        const newUser = insertResult.rows[0];
+        const userResult = {
+          id: newUser[0] as string,
+          email: newUser[1] as string,
+          name: newUser[2] as string,
+          isAdmin: newUser[3] as boolean,
+        };
 
         return createSuccessResponse(UserSuccessMessages.ADMIN_USER_CREATED, {
-          user: {
-            id: newUser[0].id,
-            email: newUser[0].email,
-            name: newUser[0].name,
-            isAdmin: newUser[0].isAdmin,
-          },
+          user: userResult,
         });
       }, "create admin");
     }),
