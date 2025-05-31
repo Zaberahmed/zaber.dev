@@ -13,7 +13,7 @@ const isProductionEnv = DEPLOYMENT_ENV === "production";
 export const client = postgres(dbConnectionString, {
   max: 10, // Maximum number of connections
   connect_timeout: 60, // Timeout for establishing a connection
-  ssl: isProductionEnv ? "require" : false, // Use SSL in production
+  ssl: isProductionEnv ? { rejectUnauthorized: false } : false,
 });
 
 export function checkDatabaseConnection(
