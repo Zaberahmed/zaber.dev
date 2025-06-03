@@ -26,11 +26,7 @@ export const pool = new Pool({
   max: 10, // Maximum number of connections in the pool
   idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
   connectionTimeoutMillis: 2000, // Return an error if connection takes longer than 2 seconds
-  ssl: requiresSSL
-    ? {
-        rejectUnauthorized: false, // Accept self-signed certificates for cloud providers
-      }
-    : false,
+  ssl: isProductionEnv,
 });
 
 // Handle pool errors
