@@ -1,6 +1,7 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "npm:pg";
 import {
+  DATABASE_CA_CERT,
   DATABASE_CONNECTION_STRING,
   DEPLOYMENT_ENV,
 } from "../constants/global.constant.ts";
@@ -21,12 +22,17 @@ const requiresSSL =
   dbConnectionString.includes("planetscale.app") ||
   isProductionEnv;
 
+console.log("SSL Configuration:", {
+  requiresSSL,
+  hasCaCert: !!DATABASE_CA_CERT,
+  isProduction: isProductionEnv,
+});
+
 export const pool = new Pool({
   connectionString: dbConnectionString,
   max: 10, // Maximum number of connections in the pool
   idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
   connectionTimeoutMillis: 2000, // Return an error if connection takes longer than 2 seconds
-  ssl: isProductionEnv,
 });
 
 // Handle pool errors

@@ -17,11 +17,14 @@ const DEFAULT_DATABASE_URL =
 const DATABASE_CONNECTION_STRING =
   Deno.env.get("DATABASE_URL") || DEFAULT_DATABASE_URL;
 
+const DATABASE_CA_CERT = Deno.env.get("DATABASE_CA_CERT");
+
 const DEPLOYMENT_ENV = Deno.env.get("DEPLOYMENT_ENV") || "development";
 
 export {
   TimeConstants,
   ADMIN_SETUP_KEY,
   DATABASE_CONNECTION_STRING,
+  DATABASE_CA_CERT,
   DEPLOYMENT_ENV,
 };
