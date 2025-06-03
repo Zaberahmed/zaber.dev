@@ -1,34 +1,49 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "npm:pg";
 import {
   DATABASE_CONNECTION_STRING,
   DEPLOYMENT_ENV,
 } from "../constants/global.constant.ts";
 import { handleProcedure } from "../utils/response.ts";
 import * as schema from "./schema.ts";
-import { Client } from "jsr:@db/postgres";
 
 const dbConnectionString = DATABASE_CONNECTION_STRING;
 const isProductionEnv = DEPLOYMENT_ENV === "production";
 
-export const newClient = new Client(dbConnectionString);
+console.log("Database connection string:", dbConnectionString);
 
-const res = await newClient.connect();
-console.log("Database connection established:", res);
-
-export const client = postgres(dbConnectionString, {
-  max: 10, // Maximum number of connections
-  connect_timeout: 60, // Timeout for establishing a connection
+// Create a connection pool
+export const pool = new Pool({
+  connectionString: dbConnectionString,
+  max: 10, // Maximum number of connections in the pool
+  idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
+  connectionTimeoutMillis: 2000, // Return an error if connection takes longer than 2 seconds
   ssl: isProductionEnv ? { rejectUnauthorized: false } : false,
 });
 
-export function checkDatabaseConnection(client: Client): Promise<boolean> {
+// Handle pool errors
+pool.on("error", (err: Error) => {
+  console.error("Unexpected error on idle client", err);
+});
+
+export function checkDatabaseConnection(): Promise<boolean> {
   return handleProcedure(async () => {
-    // Simple query to check if database is accessible
-    await client.queryArray`SELECT 1`;
-    console.log("Database connection is healthy");
-    return true;
+    const client = await pool.connect();
+    try {
+      // Simple query to check if database is accessible
+      await client.query("SELECT 1");
+      console.log("Database connection is healthy");
+      return true;
+    } finally {
+      client.release();
+    }
   }, "connect to database");
 }
 
-export const db = drizzle(client, { schema });
+export const db = drizzle(pool, { schema });
+
+// Clean shutdown function
+export async function closeDatabaseConnection(): Promise<void> {
+  await pool.end();
+  console.log("Database connection pool closed");
+}

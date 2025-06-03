@@ -3,6 +3,7 @@
     "asynciterable",
     "denoland",
     "deployctl",
+    "Millis",
     "shadcn",
     "sslmode"
   ],
