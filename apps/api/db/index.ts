@@ -1,32 +1,12 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "npm:pg";
-import {
-  DATABASE_CA_CERT,
-  DATABASE_CONNECTION_STRING,
-  DEPLOYMENT_ENV,
-} from "../constants/global.constant.ts";
+import { DATABASE_CONNECTION_STRING } from "../constants/global.constant.ts";
 import { handleProcedure } from "../utils/response.ts";
 import * as schema from "./schema.ts";
 
 const dbConnectionString = DATABASE_CONNECTION_STRING;
-const isProductionEnv = DEPLOYMENT_ENV === "production";
 
 console.log("Database connection string:", dbConnectionString);
-
-// Create a connection pool with proper SSL configuration for cloud deployment
-const requiresSSL =
-  dbConnectionString.includes("ssl=require") ||
-  dbConnectionString.includes("sslmode=require") ||
-  dbConnectionString.includes("neon.tech") ||
-  dbConnectionString.includes("supabase.co") ||
-  dbConnectionString.includes("planetscale.app") ||
-  isProductionEnv;
-
-console.log("SSL Configuration:", {
-  requiresSSL,
-  hasCaCert: !!DATABASE_CA_CERT,
-  isProduction: isProductionEnv,
-});
 
 export const pool = new Pool({
   connectionString: dbConnectionString,
