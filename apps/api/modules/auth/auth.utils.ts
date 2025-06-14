@@ -1,13 +1,13 @@
 import { SignJWT, jwtVerify } from "jose";
-import type { Session } from "../types/index.ts";
-import { JWT_ALGORITHM, JWT_SECRET, TOKEN_EXPIRY } from "../constants/index.ts";
+import type { Session } from "./auth.types.ts";
+import { JWT_ALGORITHM, JWT_SECRET, TOKEN_EXPIRY } from "./auth.constants.ts";
 
 // Convert string to Uint8Array for JWT signing
 const getSecretKey = () => new TextEncoder().encode(JWT_SECRET);
 
 // Web Crypto API for password hashing (scrypt)
 // Salt is stored as part of the hash string
-async function hashPassword(password: string): Promise<string> {
+export async function hashPassword(password: string): Promise<string> {
   // Generate random salt
   const salt = crypto.getRandomValues(new Uint8Array(16));
 
@@ -44,7 +44,7 @@ async function hashPassword(password: string): Promise<string> {
   return btoa(String.fromCharCode(...combined));
 }
 
-async function verifyPassword(
+export async function verifyPassword(
   password: string,
   storedHash: string
 ): Promise<boolean> {
@@ -104,7 +104,7 @@ async function verifyPassword(
   }
 }
 
-async function createToken(
+export async function createToken(
   session: Omit<Session, "expiresAt">
 ): Promise<string> {
   const expiresAt = Math.floor(Date.now() / 1000) + TOKEN_EXPIRY;
@@ -118,7 +118,7 @@ async function createToken(
   return jwt;
 }
 
-async function verifyToken(token: string): Promise<Session | null> {
+export async function verifyToken(token: string): Promise<Session | null> {
   try {
     const { payload } = await jwtVerify(token, getSecretKey());
 
@@ -133,15 +133,7 @@ async function verifyToken(token: string): Promise<Session | null> {
   }
 }
 
-async function verifyAdminToken(token: string): Promise<boolean> {
+export async function verifyAdminToken(token: string): Promise<boolean> {
   const session = await verifyToken(token);
   return Boolean(session && session.isAdmin);
 }
-
-export {
-  hashPassword,
-  verifyPassword,
-  createToken,
-  verifyToken,
-  verifyAdminToken,
-};

@@ -2,10 +2,10 @@ const AuthSuccessMessages = {
   LOGIN_SUCCESS: "Login successful.",
   SESSION_SUCCESS: "Session retrieved successfully.",
   LOGOUT_SUCCESS: "Logout successful.",
+  ADMIN_USER_CREATED: "Admin user created successfully.",
 };
 
 const UserSuccessMessages = {
-  ADMIN_USER_CREATED: "Admin user created successfully.",
   USER_RETRIEVED: "User retrieved successfully.",
   USER_ALL_RETRIEVED: "All users retrieved successfully.",
   USER_DELETED: "User deleted successfully.",
