@@ -1,8 +1,7 @@
-import "https://deno.land/std@0.220.1/dotenv/load.ts";
+import cors from "cors";
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import { appRouter } from "./trpc/routers/index.ts";
 import { createContext } from "./trpc/context.ts";
-import cors from "cors";
 import { checkDatabaseConnection } from "./db/utils.ts";
 import { pool } from "./db/init.ts";
 
