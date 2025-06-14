@@ -1,8 +1,8 @@
 import cors from "cors";
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
-import { appRouter } from "./trpc/index.ts";
-import { createContext } from "./trpc/context.ts";
-import { checkDatabaseConnection, pool } from "./db/index.ts";
+import { appRouter } from "@trpc/index.ts";
+import { createContext } from "@trpc/context.ts";
+import { checkDatabaseConnection, pool } from "@db/index.ts";
 
 const port = Deno.env.get("WEB_LOCAL_PORT") || 5173;
 const web_url = Deno.env.get("WEB_URL");

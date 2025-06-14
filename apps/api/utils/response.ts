@@ -3,7 +3,7 @@ import {
   InternalServerErrorMessages,
   NotFoundErrorMessages,
   UnknownErrorMessages,
-} from "../constants/index.ts";
+} from "@constants/index.ts";
 
 /**
  * Creates a success response with consistent structure

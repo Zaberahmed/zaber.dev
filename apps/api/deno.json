@@ -9,6 +9,12 @@
     "db:migrate": "deno run -A db/migrate.ts"
   },
   "imports": {
+    "@modules/": "./modules/",
+    "@trpc/": "./trpc/",
+    "@constants/": "./constants/",
+    "@utils/": "./utils/",
+    "@db/": "./db/",
+
     "@trpc/server": "npm:@trpc/server@^11.1.2",
     "@types/cors": "npm:@types/cors@^2.8.17",
     "@types/pg": "npm:@types/pg@^8.10.7",

@@ -1,4 +1,4 @@
-import { DATABASE_CONNECTION_STRING } from "../constants/global.constant.ts";
+import { DATABASE_CONNECTION_STRING } from "@constants/index.ts";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "npm:pg";
 import * as schema from "./schema.ts";

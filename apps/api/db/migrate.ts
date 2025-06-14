@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { closeDatabaseConnection } from "./utils.ts";
 import { Pool } from "npm:pg";
-import { DATABASE_CONNECTION_STRING } from "../constants/index.ts";
+import { DATABASE_CONNECTION_STRING } from "@constants/index.ts";
 import * as schema from "./schema.ts";
 
 let connectionString = DATABASE_CONNECTION_STRING;

@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
-import { NotFoundErrorMessages } from "../../constants/index.ts";
-import { schema, db } from "../../db/index.ts";
+import { NotFoundErrorMessages } from "@constants/index.ts";
+import { schema, db } from "@db/index.ts";
 import type { DeleteUserByIdInput, GetUserByIdInput } from "./user.schema.ts";
 import type { UserListResponse, UserResponse } from "./user.types.ts";
 

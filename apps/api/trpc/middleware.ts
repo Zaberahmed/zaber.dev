@@ -3,7 +3,7 @@ import { t } from "./init.ts";
 import {
   ForbiddenErrorMessages,
   UnauthorizedErrorMessages,
-} from "../constants/index.ts";
+} from "@constants/index.ts";
 
 /**
  * Middleware that checks if user is authenticated

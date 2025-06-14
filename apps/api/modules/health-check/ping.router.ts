@@ -1,6 +1,6 @@
-import { createSuccessResponse } from "../../utils/index.ts";
-import { publicProcedure, router } from "../../trpc/index.ts";
-import { checkDatabaseConnection, pool } from "../../db/index.ts";
+import { createSuccessResponse } from "@utils/index.ts";
+import { publicProcedure, router } from "@trpc/index.ts";
+import { checkDatabaseConnection, pool } from "@db/index.ts";
 
 const pingRouter = router({
   ping: publicProcedure.query(async () => {

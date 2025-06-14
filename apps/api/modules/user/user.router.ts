@@ -1,5 +1,5 @@
-import { adminProcedure, publicProcedure, router } from "../../trpc/index.ts";
-import { createSuccessResponse, handleProcedure } from "../../utils/index.ts";
+import { adminProcedure, publicProcedure, router } from "@trpc/index.ts";
+import { createSuccessResponse, handleProcedure } from "@utils/index.ts";
 import { UserSuccessMessages } from "./user.constant.ts";
 import { deleteUserByIdSchema, getUserByIdSchema } from "./user.schema.ts";
 import { userService } from "./user.service.ts";

@@ -1,10 +1,10 @@
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
-import { db, schema } from "../../db/index.ts";
+import { db, schema } from "@db/index.ts";
 import {
   ForbiddenErrorMessages,
   UnauthorizedErrorMessages,
-} from "../../constants/index.ts";
+} from "@constants/index.ts";
 import { hashPassword, verifyPassword, createToken } from "./auth.utils.ts";
 import { ADMIN_SETUP_KEY } from "./auth.constants.ts";
 import type {

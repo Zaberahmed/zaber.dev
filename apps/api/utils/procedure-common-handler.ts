@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server/unstable-core-do-not-import";
-import { UnknownErrorMessages } from "../constants/index.ts";
+import { UnknownErrorMessages } from "@constants/index.ts";
 
 /**
  * Handles common try-catch pattern for TRPC procedures
