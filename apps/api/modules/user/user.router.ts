@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { z } from "zod";
-import { UserSuccessMessages } from "../../constants/index.ts";
+import { UserSuccessMessages } from "./user.constant.ts";
 import { db } from "../../db/init.ts";
 import { users } from "../../db/schema.ts";
 import {
@@ -8,7 +8,7 @@ import {
   createSuccessResponse,
   handleProcedure,
 } from "../../utils/index.ts";
-import { adminProcedure, publicProcedure, router } from "../index.ts";
+import { adminProcedure, publicProcedure, router } from "../../trpc/index.ts";
 
 /**
  * User router for user related procedures

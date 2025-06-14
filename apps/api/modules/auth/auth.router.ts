@@ -1,4 +1,4 @@
-import { AuthSuccessMessages } from "../../constants/index.ts";
+import { AuthSuccessMessages } from "./auth.constants.ts";
 import { adminProcedure, publicProcedure, router } from "../../trpc/index.ts";
 import { createSuccessResponse, handleProcedure } from "../../utils/index.ts";
 import { createInitialAdminSchema, loginSchema } from "./auth.schema.ts";

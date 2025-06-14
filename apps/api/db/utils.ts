@@ -1,4 +1,4 @@
-import { handleProcedure } from "../utils/response.ts";
+import { handleProcedure } from "../utils/index.ts";
 import type { Pool } from "./index.ts";
 
 async function checkDatabaseConnection(pool: Pool): Promise<boolean> {

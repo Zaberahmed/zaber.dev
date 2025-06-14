@@ -14,14 +14,11 @@ const UnauthorizedErrorMessages = {
 
 const InternalServerErrorMessages = {
   INTERNAL_SERVER_ERROR_MESSAGE: "An internal server error occurred.",
-  INTERNAL_SERVER_ERROR_USER: "Failed to retrieve user.",
-  INTERNAL_SERVER_ERROR_USER_DELETE: "Failed to delete users.",
   INTERNAL_SERVER_ERROR_DATABASE_CONNECTION: "Failed to connect to database.",
 };
 
 const NotFoundErrorMessages = {
   NOT_FOUND_RESOURCE_MESSAGE: "Resource not found.",
-  NOT_FOUND_USER: "User not found.",
 };
 
 const UnknownErrorMessages = {

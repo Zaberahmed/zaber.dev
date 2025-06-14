@@ -1,6 +1,7 @@
 export {
   createSuccessResponse,
-  handleProcedure,
   createNotFoundError,
   createInternalServerError,
 } from "./response.ts";
+
+export { handleProcedure } from "./procedure-common-handler.ts";
