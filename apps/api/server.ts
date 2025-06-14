@@ -1,6 +1,6 @@
 import cors from "cors";
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
-import { appRouter } from "./trpc/routers/index.ts";
+import { appRouter } from "./trpc/index.ts";
 import { createContext } from "./trpc/context.ts";
 import { checkDatabaseConnection, pool } from "./db/index.ts";
 

@@ -1,5 +1,7 @@
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import type { AppRouter } from "./index.ts";
+import type { appRouter } from "./merged-routers.ts";
+
+type AppRouter = typeof appRouter;
 
 // Infer router input and output types
 type RouterInput = inferRouterInputs<AppRouter>;

@@ -1,8 +1,7 @@
 {
   "name": "@scope/api",
   "exports": {
-    "./routers": "./trpc/routers/index.ts",
-    "./routers/types.ts": "./trpc/routers/types.ts"
+    "./trpc": "./trpc/index.ts"
   },
   "tasks": {
     "dev": "deno run --allow-env --allow-net --allow-read --allow-ffi --env-file=.env.dev --watch index.ts",

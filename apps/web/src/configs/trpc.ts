@@ -1,4 +1,4 @@
-import type { AppRouter } from "@scope/api/routers";
+import type { AppRouter } from "@scope/api/trpc";
 import { httpBatchLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 
