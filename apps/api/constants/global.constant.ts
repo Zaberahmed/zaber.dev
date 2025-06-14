@@ -15,7 +15,6 @@ const TimeConstants = {
 const ADMIN_DEFAULT_SETUP_KEY = "your-super-secret-setup-key";
 const DEFAULT_DATABASE_URL =
   "postgresql://postgres:postgres@localhost:5432/test";
-const DEFAULT_DATABASE_CA_CERT = "";
 const DEFAULT_DEPLOYMENT_ENV = "development";
 
 // Environment variables with fallbacks
@@ -23,14 +22,11 @@ const ADMIN_SETUP_KEY =
   Deno.env.get("ADMIN_SETUP_KEY") || ADMIN_DEFAULT_SETUP_KEY;
 const DATABASE_CONNECTION_STRING =
   Deno.env.get("DATABASE_URL") || DEFAULT_DATABASE_URL;
-const DATABASE_CA_CERT =
-  Deno.env.get("DATABASE_CA_CERT") || DEFAULT_DATABASE_CA_CERT;
 const DEPLOYMENT_ENV = Deno.env.get("DEPLOYMENT_ENV") || DEFAULT_DEPLOYMENT_ENV;
 
 export {
   TimeConstants,
   ADMIN_SETUP_KEY,
   DATABASE_CONNECTION_STRING,
-  DATABASE_CA_CERT,
   DEPLOYMENT_ENV,
 };

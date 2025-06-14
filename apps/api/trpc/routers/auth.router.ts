@@ -8,7 +8,7 @@ import {
   UnauthorizedErrorMessages,
   UserSuccessMessages,
 } from "../../constants/index.ts";
-import { db } from "../../db/index.ts";
+import { db } from "../../db/init.ts";
 import { users } from "../../db/schema.ts";
 import {
   createToken,

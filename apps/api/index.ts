@@ -1,4 +1,3 @@
-import "https://deno.land/std@0.220.1/dotenv/load.ts";
 import { createServer } from "./server.ts";
 import { DEPLOYMENT_ENV } from "./constants/global.constant.ts";
 

@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { UserSuccessMessages } from "../../constants/index.ts";
-import { db } from "../../db/index.ts";
+import { db } from "../../db/init.ts";
 import { users } from "../../db/schema.ts";
 import {
   createNotFoundError,
