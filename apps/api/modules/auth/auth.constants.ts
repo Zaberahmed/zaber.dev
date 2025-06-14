@@ -1,4 +1,4 @@
-import { TimeConstants } from "../../constants/global.constant.ts";
+import { TimeConstants } from "../../constants/index.ts";
 
 const JWT_DEFAULT_SECRET = "your-super-secret-key-for-jwt-signing";
 const ADMIN_DEFAULT_SETUP_KEY = "your-super-secret-setup-key";

@@ -1,5 +1,5 @@
 import { handleProcedure } from "../utils/index.ts";
-import type { Pool } from "./index.ts";
+import type { Pool } from "npm:pg";
 
 async function checkDatabaseConnection(pool: Pool): Promise<boolean> {
   return await handleProcedure(async () => {

@@ -1,5 +1,7 @@
 import { DATABASE_CONNECTION_STRING } from "../constants/global.constant.ts";
-import { drizzle, Pool, schema } from "./index.ts";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "npm:pg";
+import * as schema from "./schema.ts";
 
 const pool = new Pool({
   connectionString: DATABASE_CONNECTION_STRING,

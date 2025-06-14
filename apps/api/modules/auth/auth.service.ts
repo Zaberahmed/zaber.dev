@@ -1,7 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
-import { db } from "../../db/init.ts";
-import { users } from "../../db/schema.ts";
+import { db, schema } from "../../db/index.ts";
 import {
   ForbiddenErrorMessages,
   UnauthorizedErrorMessages,
@@ -11,19 +10,21 @@ import { ADMIN_SETUP_KEY } from "./auth.constants.ts";
 import type {
   LoginResponse,
   SessionResponse,
-  UserResponse,
+  UserAuthResponse,
 } from "./auth.types.ts";
 import type { LoginInput, CreateInitialAdminInput } from "./auth.schema.ts";
 
 class AuthService {
+  private users = schema.users;
+
   async login(input: LoginInput): Promise<LoginResponse> {
     const { email, password } = input;
 
     // Find user by email
     const userResults = await db
       .select()
-      .from(users)
-      .where(eq(users.email, email))
+      .from(this.users)
+      .where(eq(this.users.email, email))
       .limit(1);
     const user = userResults[0];
 
@@ -56,8 +57,8 @@ class AuthService {
     // Fetch user data based on session
     const userResults = await db
       .select()
-      .from(users)
-      .where(eq(users.id, userId))
+      .from(this.users)
+      .where(eq(this.users.id, userId))
       .limit(1);
     const user = userResults[0];
 
@@ -77,7 +78,7 @@ class AuthService {
 
   async createInitialAdmin(
     input: CreateInitialAdminInput
-  ): Promise<UserResponse> {
+  ): Promise<UserAuthResponse> {
     const { email, password, name, setupKey } = input;
 
     // Verify setup key from environment variable
@@ -90,9 +91,9 @@ class AuthService {
 
     // Check if any admin user already exists
     const adminCount = await db
-      .select({ count: users.id })
-      .from(users)
-      .where(eq(users.isAdmin, true));
+      .select({ count: this.users.id })
+      .from(this.users)
+      .where(eq(this.users.isAdmin, true));
 
     if (adminCount.length > 0 && adminCount[0].count) {
       throw new TRPCError({
@@ -106,7 +107,7 @@ class AuthService {
 
     // Create the admin user
     const newUser = await db
-      .insert(users)
+      .insert(this.users)
       .values({
         email,
         passwordHash,

@@ -1,9 +1,10 @@
+import { drizzle } from "drizzle-orm/node-postgres";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { drizzle, schema } from "./index.ts";
 import { closeDatabaseConnection } from "./utils.ts";
-import { Pool } from "pg";
-import { DATABASE_CONNECTION_STRING } from "../constants/global.constant.ts";
+import { Pool } from "npm:pg";
+import { DATABASE_CONNECTION_STRING } from "../constants/index.ts";
 import { load } from "https://deno.land/std@0.220.1/dotenv/mod.ts";
+import * as schema from "./schema.ts";
 
 let connectionString = DATABASE_CONNECTION_STRING;
 const args = Deno.args;
