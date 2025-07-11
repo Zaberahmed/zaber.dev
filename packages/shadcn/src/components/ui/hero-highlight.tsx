@@ -1,7 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useMotionValue, motion, useMotionTemplate } from "motion/react";
-import type React from "react";
+// deno-lint-ignore verbatim-module-syntax
+import React from "react";
 
 export const HeroHighlight = ({
   children,
