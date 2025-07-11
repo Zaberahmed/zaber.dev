@@ -2,16 +2,18 @@
   "name": "@packages/shadcn",
   "exports": {
     "./lib/utils": "./src/lib/utils.ts",
-    "./button": "./src/components/ui/button.tsx"
+    "./button": "./src/components/ui/button.tsx",
+    "./hero-highlight": "./src/components/ui/hero-highlight.tsx",
+    "./highlight": "./src/components/ui/hero-highlight.tsx"
   },
   "imports": {
     "@/lib/utils": "./src/lib/utils.ts",
-
     "react": "npm:react@^19.0.0",
     "@radix-ui/react-slot": "npm:@radix-ui/react-slot@^1.0.2",
     "class-variance-authority": "npm:class-variance-authority@^0.7.0",
     "clsx": "npm:clsx@^2.0.0",
-    "tailwind-merge": "npm:tailwind-merge@^2.2.0"
+    "tailwind-merge": "npm:tailwind-merge@^2.2.0",
+    "motion": "npm:motion@^12.23.3"
   },
   "compilerOptions": {
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
