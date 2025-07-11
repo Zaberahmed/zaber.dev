@@ -1,19 +1,34 @@
-import { Link } from "react-router-dom";
-import { Button } from "@packages/shadcn/button";
+import { HeroHighlight, Highlight } from "@packages/shadcn/hero-highlight";
+import { motion } from "npm:framer-motion@^12.23.3";
 
 const Home = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold mb-4">Home Page</h1>
-      <p className="mb-4">
-        This is a simple about page to demonstrate React Router.
-      </p>
-      <Link to="/about" className="text-blue-500 hover:text-blue-700 underline">
-        Go to About
-      </Link>
-      <div className="mt-4">
-        <Button variant="default">Click Me</Button>
-      </div>
+      <HeroHighlight>
+        <motion.h1
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: [20, -5, 0],
+          }}
+          transition={{
+            duration: 0.5,
+            ease: [0.4, 0.0, 0.2, 1],
+          }}
+          className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto ">
+          This site is under{" "}
+          <Highlight className="text-black dark:text-white">
+            construction
+          </Highlight>
+          <br />
+          It will be{" "}
+          <Highlight className="text-black dark:text-white">live</Highlight>
+          very soon!
+        </motion.h1>
+      </HeroHighlight>
     </div>
   );
 };
