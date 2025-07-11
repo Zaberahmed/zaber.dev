@@ -1,10 +1,9 @@
-import { load } from "https://deno.land/std@0.220.1/dotenv/mod.ts";
+import { DATABASE_CONNECTION_STRING } from "@constants/index.ts";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { closeDatabaseConnection } from "./utils.ts";
-import { Pool } from "npm:pg";
-import { DATABASE_CONNECTION_STRING } from "@constants/index.ts";
+import { load } from "https://deno.land/std@0.220.1/dotenv/mod.ts";
 import * as schema from "./schema.ts";
+import { closeDatabaseConnection, createPool } from "./utils.ts";
 
 let connectionString = DATABASE_CONNECTION_STRING;
 const args = Deno.args;
@@ -44,12 +43,7 @@ if (args.length > 0 && args[0] === "--local") {
   console.log("No specific mode provided (--local or --prod)");
 }
 
-const pool = new Pool({
-  connectionString,
-  max: 10, // Maximum number of connections in the pool
-  idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
-  connectionTimeoutMillis: 2000, // Return an error if connection takes longer than 2 seconds
-});
+const pool = createPool(connectionString);
 
 const db = drizzle(pool, { schema });
 

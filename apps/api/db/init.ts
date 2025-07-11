@@ -1,18 +1,13 @@
 import { DATABASE_CONNECTION_STRING } from "@constants/index.ts";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "npm:pg";
 import * as schema from "./schema.ts";
+import { createPool } from "./utils.ts";
 
-const pool = new Pool({
-  connectionString: DATABASE_CONNECTION_STRING,
-  max: 10, // Maximum number of connections in the pool
-  idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
-  connectionTimeoutMillis: 2000, // Return an error if connection takes longer than 2 seconds
-});
+const pool = createPool(DATABASE_CONNECTION_STRING);
 
 // Handle pool errors
 pool.on("error", (err: Error) => {
-  console.error("Unexpected error on idle client", err);
+  console.error("Unexpected error on idle db client", err);
 });
 
 const db = drizzle(pool, { schema });

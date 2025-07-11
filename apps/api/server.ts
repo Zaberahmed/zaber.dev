@@ -16,10 +16,6 @@ const corsOptions = {
 };
 
 export const createServer = async () => {
-  /**
-   * Create HTTP server
-   * @see https://trpc.io/docs/adapters/standalone
-   */
   await checkDatabaseConnection(pool);
 
   return createHTTPServer({

@@ -1,6 +1,14 @@
 import { handleProcedure } from "@utils/index.ts";
-import type { Pool } from "npm:pg";
+import { Pool } from "npm:pg";
 
+function createPool(connectionString: string): Pool {
+  return new Pool({
+    connectionString,
+    max: 10, // Maximum number of connections in the pool
+    idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
+    connectionTimeoutMillis: 2000, // Return an error if connection takes longer than 2 seconds
+  });
+}
 async function checkDatabaseConnection(pool: Pool): Promise<boolean> {
   return await handleProcedure(async () => {
     const client = await pool.connect();
@@ -14,10 +22,9 @@ async function checkDatabaseConnection(pool: Pool): Promise<boolean> {
   }, "connect to database");
 }
 
-// Clean shutdown function
 async function closeDatabaseConnection(pool: Pool): Promise<void> {
   await pool.end();
   console.log("Database connection pool closed");
 }
 
-export { checkDatabaseConnection, closeDatabaseConnection };
+export { createPool, checkDatabaseConnection, closeDatabaseConnection };
