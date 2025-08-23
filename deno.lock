@@ -1,12 +1,6 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@db/postgres@*": "0.19.5",
-    "jsr:@std/bytes@^1.0.5": "1.0.6",
-    "jsr:@std/crypto@^1.0.4": "1.0.5",
-    "jsr:@std/encoding@^1.0.9": "1.0.10",
-    "jsr:@std/fmt@^1.0.6": "1.0.8",
-    "jsr:@std/path@^1.0.8": "1.1.0",
     "npm:@deno/vite-plugin@^1.0.4": "1.0.4_vite@6.3.5__picomatch@4.0.2_@types+node@22.15.15",
     "npm:@radix-ui/react-slot@^1.0.2": "1.2.3_@types+react@19.0.10_react@19.0.0",
     "npm:@radix-ui/react-slot@^1.2.2": "1.2.3_@types+react@19.0.10_react@19.0.0",
@@ -27,10 +21,8 @@
     "npm:clsx@2": "2.1.1",
     "npm:clsx@^2.1.1": "2.1.1",
     "npm:cors@^2.8.5": "2.8.5",
-    "npm:drizzle-kit@*": "0.20.18_hono@4.7.10_zod@3.25.32_esbuild@0.19.12",
     "npm:drizzle-kit@~0.20.10": "0.20.18_hono@4.7.10_zod@3.25.32_esbuild@0.19.12",
-    "npm:drizzle-orm@~0.29.3": "0.29.5_@types+pg@8.15.2_@types+react@19.0.10_pg@8.16.0_react@19.0.0_postgres@3.4.7",
-    "npm:framer-motion@^11.15.0": "11.18.2_react@19.0.0_react-dom@19.0.0__react@19.0.0",
+    "npm:drizzle-orm@~0.29.3": "0.29.5_@types+pg@8.15.2_@types+react@19.0.10_pg@8.16.0_react@19.0.0",
     "npm:framer-motion@^12.23.3": "12.23.3_react@19.0.0_react-dom@19.0.0__react@19.0.0",
     "npm:jose@^5.2.0": "5.10.0",
     "npm:lucide-react@0.507": "0.507.0_react@19.0.0",
@@ -38,10 +30,8 @@
     "npm:pg@*": "8.16.0",
     "npm:pg@^8.11.3": "8.16.0",
     "npm:postcss@^8.4.38": "8.5.3",
-    "npm:postgres@^3.4.3": "3.4.7",
     "npm:react-dom@19.0.0": "19.0.0_react@19.0.0",
     "npm:react-router-dom@^6.22.3": "6.30.1_react@19.0.0_react-dom@19.0.0__react@19.0.0",
-    "npm:react@19": "19.0.0",
     "npm:react@19.0.0": "19.0.0",
     "npm:tailwind-merge@^2.2.0": "2.6.0",
     "npm:tailwind-merge@^3.2.0": "3.3.0",
@@ -50,33 +40,6 @@
     "npm:vite@*": "6.3.5_picomatch@4.0.2_@types+node@22.15.15",
     "npm:vite@^6.1.1": "6.3.5_picomatch@4.0.2_@types+node@22.15.15",
     "npm:zod@^3.22.4": "3.25.32"
-  },
-  "jsr": {
-    "@db/postgres@0.19.5": {
-      "integrity": "afdbe608bd066cda2ee5dba37c416d332098b9238c51aec223331108e281954c",
-      "dependencies": [
-        "jsr:@std/bytes",
-        "jsr:@std/crypto",
-        "jsr:@std/encoding",
-        "jsr:@std/fmt",
-        "jsr:@std/path"
-      ]
-    },
-    "@std/bytes@1.0.6": {
-      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
-    },
-    "@std/crypto@1.0.5": {
-      "integrity": "0dcfbb319fe0bba1bd3af904ceb4f948cde1b92979ec1614528380ed308a3b40"
-    },
-    "@std/encoding@1.0.10": {
-      "integrity": "8783c6384a2d13abd5e9e87a7ae0520a30e9f56aeeaa3bdf910a3eaaf5c811a1"
-    },
-    "@std/fmt@1.0.8": {
-      "integrity": "71e1fc498787e4434d213647a6e43e794af4fd393ef8f52062246e06f7e372b7"
-    },
-    "@std/path@1.1.0": {
-      "integrity": "ddc94f8e3c275627281cbc23341df6b8bcc874d70374f75fec2533521e3d6886"
-    }
   },
   "npm": {
     "@alloc/quick-lru@5.2.0": {
@@ -1060,23 +1023,6 @@
         "react"
       ]
     },
-    "drizzle-orm@0.29.5_@types+pg@8.15.2_@types+react@19.0.10_pg@8.16.0_react@19.0.0_postgres@3.4.7": {
-      "integrity": "sha512-jS3+uyzTz4P0Y2CICx8FmRQ1eplURPaIMWDn/yq6k4ShRFj9V7vlJk67lSf2kyYPzQ60GkkNGXcJcwrxZ6QCRw==",
-      "dependencies": [
-        "@types/pg",
-        "@types/react",
-        "pg",
-        "postgres",
-        "react"
-      ],
-      "optionalPeers": [
-        "@types/pg",
-        "@types/react",
-        "pg",
-        "postgres",
-        "react"
-      ]
-    },
     "eastasianwidth@0.2.0": {
       "integrity": "sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA=="
     },
@@ -1290,25 +1236,11 @@
     "fraction.js@4.3.7": {
       "integrity": "sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew=="
     },
-    "framer-motion@11.18.2_react@19.0.0_react-dom@19.0.0__react@19.0.0": {
-      "integrity": "sha512-5F5Och7wrvtLVElIpclDT0CBzMVg3dL22B64aZwHtsIY8RB4mXICLrkajK4G9R+ieSAGcgrLeae2SeUTg2pr6w==",
-      "dependencies": [
-        "motion-dom@11.18.1",
-        "motion-utils@11.18.1",
-        "react",
-        "react-dom",
-        "tslib"
-      ],
-      "optionalPeers": [
-        "react",
-        "react-dom"
-      ]
-    },
     "framer-motion@12.23.3_react@19.0.0_react-dom@19.0.0__react@19.0.0": {
       "integrity": "sha512-llmLkf44zuIZOPSrE4bl4J0UTg6bav+rlKEfMRKgvDMXqBrUtMg6cspoQeRVK3nqRLxTmAJhfGXk39UDdZD7Kw==",
       "dependencies": [
-        "motion-dom@12.23.2",
-        "motion-utils@12.23.2",
+        "motion-dom",
+        "motion-utils",
         "react",
         "react-dom",
         "tslib"
@@ -1529,20 +1461,11 @@
     "minipass@7.1.2": {
       "integrity": "sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw=="
     },
-    "motion-dom@11.18.1": {
-      "integrity": "sha512-g76KvA001z+atjfxczdRtw/RXOM3OMSdd1f4DL77qCTF/+avrRJiawSG4yDibEQ215sr9kpinSlX2pCTJ9zbhw==",
-      "dependencies": [
-        "motion-utils@11.18.1"
-      ]
-    },
     "motion-dom@12.23.2": {
       "integrity": "sha512-73j6xDHX/NvVh5L5oS1ouAVnshsvmApOq4F3VZo5MkYSD/YVsVLal4Qp9wvVgJM9uU2bLZyc0Sn8B9c/MMKk4g==",
       "dependencies": [
-        "motion-utils@12.23.2"
+        "motion-utils"
       ]
-    },
-    "motion-utils@11.18.1": {
-      "integrity": "sha512-49Kt+HKjtbJKLtgO/LKj9Ld+6vw9BjH5d9sc40R/kVyH8GLAXgT42M2NnuPcJNuA3s9ZfZBUcwIgpmZWGEE+hA=="
     },
     "motion-utils@12.23.2": {
       "integrity": "sha512-cIEXlBlXAOUyiAtR0S+QPQUM9L3Diz23Bo+zM420NvSd/oPQJwg6U+rT+WRTpp0rizMsBGQOsAwhWIfglUcZfA=="
@@ -1550,7 +1473,7 @@
     "motion@12.23.3_react@19.0.0_react-dom@19.0.0__react@19.0.0": {
       "integrity": "sha512-7N0Q4c+Xms+wuq2o27rPONLYNOhQUsLRpMi8CcVxv9FFJhGAqRNjJ1hrBCxHh+Rx6B2W2WPbCOLQc+QJ3rw6Rw==",
       "dependencies": [
-        "framer-motion@12.23.3_react@19.0.0_react-dom@19.0.0__react@19.0.0",
+        "framer-motion",
         "react",
         "react-dom",
         "tslib"
@@ -1779,9 +1702,6 @@
     },
     "postgres-range@1.1.4": {
       "integrity": "sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w=="
-    },
-    "postgres@3.4.7": {
-      "integrity": "sha512-Jtc2612XINuBjIl/QTWsV5UvE8UHuNblcO3vVADSrKsrc6RqGX6lOW1cEo3CM2v0XG4Nat8nI+YM7/f26VxXLw=="
     },
     "queue-microtask@1.2.3": {
       "integrity": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
@@ -2137,15 +2057,6 @@
       "integrity": "sha512-OSm2xTIRfW8CV5/QKgngwmQW/8aPfGdaQFlrGoErlgg/Epm7cjb6K6VEyExfe65a3VybUOnu381edLb0dfJl0g=="
     }
   },
-  "remote": {
-    "https://deno.land/std@0.220.1/dotenv/load.ts": "587b342f0f6a3df071331fe6ba1c823729ab68f7d53805809475e486dd4161d7",
-    "https://deno.land/std@0.220.1/dotenv/mod.ts": "0180eaeedaaf88647318811cdaa418cc64dc51fb08354f91f5f480d0a1309f7d",
-    "https://deno.land/std@0.220.1/dotenv/parse.ts": "09977ff88dfd1f24f9973a338f0f91bbdb9307eb5ff6085446e7c423e4c7ba0c",
-    "https://deno.land/std@0.220.1/dotenv/stringify.ts": "0047ad7068289735d08964046aea267a750c141b494ca0e38831b89be6c020c2",
-    "https://deno.land/std@0.224.0/dotenv/mod.ts": "0180eaeedaaf88647318811cdaa418cc64dc51fb08354f91f5f480d0a1309f7d",
-    "https://deno.land/std@0.224.0/dotenv/parse.ts": "09977ff88dfd1f24f9973a338f0f91bbdb9307eb5ff6085446e7c423e4c7ba0c",
-    "https://deno.land/std@0.224.0/dotenv/stringify.ts": "275da322c409170160440836342eaa7cf012a1d11a7e700d8ca4e7f2f8aa4615"
-  },
   "workspace": {
     "members": {
       "apps/api": {
@@ -2185,8 +2096,8 @@
           "npm:@radix-ui/react-slot@^1.0.2",
           "npm:class-variance-authority@0.7",
           "npm:clsx@2",
-          "npm:motion@^12.23.3",
-          "npm:react@19",
+          "npm:framer-motion@^12.23.3",
+          "npm:react@19.0.0",
           "npm:tailwind-merge@^2.2.0"
         ],
         "packageJson": {
