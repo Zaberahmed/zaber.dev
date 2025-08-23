@@ -2,7 +2,8 @@
   "name": "@packages/shadcn",
   "exports": {
     "./lib/utils": "./src/lib/utils.ts",
-    "./ui": "./src/components/ui/index.ts"
+    "./ui": "./src/components/ui/index.ts",
+    "./icons": "./src/components/icons/icons.tsx"
   },
   "imports": {
     "@/lib/utils": "./src/lib/utils.ts",
@@ -11,7 +12,8 @@
     "class-variance-authority": "npm:class-variance-authority@^0.7.0",
     "clsx": "npm:clsx@^2.0.0",
     "tailwind-merge": "npm:tailwind-merge@^2.2.0",
-    "framer-motion": "npm:framer-motion@^12.23.3"
+    "framer-motion": "npm:framer-motion@^12.23.3",
+    "@tabler/icons-react": "npm:@tabler/icons-react@^3.26.0"
   },
   "compilerOptions": {
     "lib": ["ES2020", "DOM", "DOM.Iterable"],

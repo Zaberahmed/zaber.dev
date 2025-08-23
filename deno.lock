@@ -4,6 +4,8 @@
     "npm:@deno/vite-plugin@^1.0.4": "1.0.4_vite@6.3.5__picomatch@4.0.2_@types+node@22.15.15",
     "npm:@radix-ui/react-slot@^1.0.2": "1.2.3_@types+react@19.0.10_react@19.0.0",
     "npm:@radix-ui/react-slot@^1.2.2": "1.2.3_@types+react@19.0.10_react@19.0.0",
+    "npm:@tabler/icons-react@^3.26.0": "3.34.1_react@19.0.0",
+    "npm:@tabler/icons-react@^3.34.1": "3.34.1_react@19.0.0",
     "npm:@tanstack/react-query@^5.75.1": "5.77.2_react@19.0.0",
     "npm:@trpc/client@^11.1.2": "11.1.3_@trpc+server@11.1.3__typescript@5.8.3_typescript@5.8.3",
     "npm:@trpc/react-query@^11.1.2": "11.1.3_@tanstack+react-query@5.77.2__react@19.0.0_@trpc+client@11.1.3__@trpc+server@11.1.3___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.3__typescript@5.8.3_react@19.0.0_react-dom@19.0.0__react@19.0.0_typescript@5.8.3",
@@ -696,6 +698,16 @@
       "dependencies": [
         "@swc/counter"
       ]
+    },
+    "@tabler/icons-react@3.34.1_react@19.0.0": {
+      "integrity": "sha512-Ld6g0NqOO05kyyHsfU8h787PdHBm7cFmOycQSIrGp45XcXYDuOK2Bs0VC4T2FWSKZ6bx5g04imfzazf/nqtk1A==",
+      "dependencies": [
+        "@tabler/icons",
+        "react"
+      ]
+    },
+    "@tabler/icons@3.34.1": {
+      "integrity": "sha512-9gTnUvd7Fd/DmQgr3MKY+oJLa1RfNsQo8c/ir3TJAWghOuZXodbtbVp0QBY2DxWuuvrSZFys0HEbv1CoiI5y6A=="
     },
     "@tanstack/query-core@5.77.2": {
       "integrity": "sha512-1lqJwPsR6GX6nZFw06erRt518O19tWU6Q+x0fJUygl4lxHCYF2nhzBPwLKk2NPjYOrpR0K567hxPc5K++xDe9Q=="
@@ -2094,6 +2106,7 @@
       "packages/shadcn": {
         "dependencies": [
           "npm:@radix-ui/react-slot@^1.0.2",
+          "npm:@tabler/icons-react@^3.26.0",
           "npm:class-variance-authority@0.7",
           "npm:clsx@2",
           "npm:framer-motion@^12.23.3",
@@ -2103,6 +2116,7 @@
         "packageJson": {
           "dependencies": [
             "npm:@radix-ui/react-slot@^1.2.2",
+            "npm:@tabler/icons-react@^3.34.1",
             "npm:class-variance-authority@~0.7.1",
             "npm:clsx@^2.1.1",
             "npm:lucide-react@0.507",
