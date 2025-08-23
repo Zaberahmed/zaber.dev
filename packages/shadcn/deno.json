@@ -2,9 +2,7 @@
   "name": "@packages/shadcn",
   "exports": {
     "./lib/utils": "./src/lib/utils.ts",
-    "./button": "./src/components/ui/button.tsx",
-    "./hero-highlight": "./src/components/ui/hero-highlight.tsx",
-    "./highlight": "./src/components/ui/hero-highlight.tsx"
+    "./ui": "./src/components/ui/index.ts"
   },
   "imports": {
     "@/lib/utils": "./src/lib/utils.ts",

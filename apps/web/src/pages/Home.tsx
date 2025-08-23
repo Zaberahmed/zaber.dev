@@ -1,4 +1,4 @@
-import { HeroHighlight, Highlight } from "@packages/shadcn/hero-highlight";
+import { HeroHighlight, Highlight } from "@packages/shadcn/ui";
 import { motion } from "npm:framer-motion@^12.23.3";
 
 const Home = () => {
