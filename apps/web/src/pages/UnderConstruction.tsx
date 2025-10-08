@@ -1,6 +1,5 @@
 import { HeroHighlight, Highlight } from "@packages/shadcn/ui";
 import { motion } from "framer-motion";
-import Navbar from "../sections/navbar/index.ts";
 
 const UnderConstruction = () => {
   return (
@@ -30,7 +29,6 @@ const UnderConstruction = () => {
           very soon!
         </motion.h1>
       </HeroHighlight>
-      <Navbar />
     </div>
   );
 };
