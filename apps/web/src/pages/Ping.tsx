@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { trpc } from "../configs/trpc.ts";
 import { RoutePaths } from "../entities/index.ts";
 
@@ -19,11 +18,11 @@ const Ping = () => {
           tRPC Response: {data?.data?.greeting}
         </h2>
       )}
-      <Link
-        to={RoutePaths.HOME}
+      <a
+        href={RoutePaths.HOME}
         className="text-blue-500 hover:text-blue-700 underline">
         Go back to Home
-      </Link>
+      </a>
     </div>
   );
 };
