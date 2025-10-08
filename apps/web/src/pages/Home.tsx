@@ -26,7 +26,9 @@ const Home = () => {
           </Highlight>
           <br />
           It will be{" "}
-          <Highlight className="text-black dark:text-white">live</Highlight>
+          <Highlight className="text-black dark:text-white">
+            live
+          </Highlight>{" "}
           very soon!
         </motion.h1>
       </HeroHighlight>
