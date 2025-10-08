@@ -1,14 +1,25 @@
-const navbarItems = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/experiences", label: "Experiences" },
-  { to: "/projects", label: "Projects" },
-  { to: "/blogs", label: "Blogs" },
-  { to: "/contact", label: "Contact" },
-  { to: "/ping", label: "Ping" },
-] as const;
+import { RoutePaths } from "../../entities/route-paths.ts";
 
-type NavbarItem = (typeof navbarItems)[number];
+export type NavbarPaths = Exclude<RoutePaths, "*" | "/">;
+type NavbarLabels =
+  | "Home"
+  | "About"
+  | "Experiences"
+  | "Projects"
+  | "Blogs"
+  | "Contact"
+  | "Ping";
+export type NavbarItem = {
+  path: NavbarPaths;
+  label: NavbarLabels;
+};
 
-export type { NavbarItem };
-export { navbarItems };
+export const navbarItems: NavbarItem[] = [
+  { path: RoutePaths.HOME, label: "Home" },
+  { path: RoutePaths.ABOUT, label: "About" },
+  { path: RoutePaths.EXPERIENCES, label: "Experiences" },
+  { path: RoutePaths.PROJECTS, label: "Projects" },
+  { path: RoutePaths.BLOGS, label: "Blogs" },
+  { path: RoutePaths.CONTACT, label: "Contact" },
+  { path: RoutePaths.PING, label: "Ping" },
+];

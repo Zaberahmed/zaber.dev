@@ -6,4 +6,4 @@ export * from "./Blogs.tsx";
 export * from "./Contact.tsx";
 export * from "./NotFound.tsx";
 export * from "./Ping.tsx";
-export * from "./Navigation.tsx";
+export * from "./UnderConstruction.tsx";

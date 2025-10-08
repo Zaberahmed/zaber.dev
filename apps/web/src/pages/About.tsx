@@ -8,7 +8,7 @@ const About = () => {
       <p className="mb-4">
         This is a simple about page to demonstrate React Router.
       </p>
-      <Link to="/" className="text-blue-500 hover:text-blue-700 underline">
+      <Link to="/home" className="text-blue-500 hover:text-blue-700 underline">
         Go back to Home
       </Link>
     </div>

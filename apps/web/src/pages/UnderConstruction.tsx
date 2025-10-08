@@ -2,7 +2,7 @@ import { HeroHighlight, Highlight } from "@packages/shadcn/ui";
 import { motion } from "framer-motion";
 import Navbar from "../sections/navbar/index.ts";
 
-const Home = () => {
+const UnderConstruction = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4">
       <HeroHighlight>
@@ -34,4 +34,4 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
+export default UnderConstruction;

@@ -32,6 +32,8 @@
     "react-dom": "npm:react-dom@19.0.0",
     "react-router-dom": "npm:react-router-dom@^6.22.3",
     "tailwindcss": "npm:tailwindcss@^3.4.3",
+    "framer-motion": "npm:framer-motion@^12.23.3",
+    "tabler-icons-react": "npm:@tabler/icons-react@^3.34.1",
     "vite": "npm:vite@^6.1.1"
   },
   "deploy": {

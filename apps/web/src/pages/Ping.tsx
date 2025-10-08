@@ -18,7 +18,7 @@ const Ping = () => {
           tRPC Response: {data?.data?.greeting}
         </h2>
       )}
-      <Link to="/" className="text-blue-500 hover:text-blue-700 underline">
+      <Link to="/home" className="text-blue-500 hover:text-blue-700 underline">
         Go back to Home
       </Link>
     </div>
