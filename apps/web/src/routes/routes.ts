@@ -1,13 +1,13 @@
-import { RoutePaths } from "../entities/route-paths.ts";
-import About from "../pages/About.tsx";
-import Blogs from "../pages/Blogs.tsx";
-import Contact from "../pages/Contact.tsx";
-import Experiences from "../pages/Experiences.tsx";
-import Home from "../pages/Home.tsx";
-import NotFound from "../pages/NotFound.tsx";
-import Ping from "../pages/Ping.tsx";
-import Projects from "../pages/Projects.tsx";
-import UnderConstruction from "../pages/UnderConstruction.tsx";
+import { RoutePaths } from "@entities/route-paths.ts";
+import About from "@pages/About.tsx";
+import Blogs from "@pages/Blogs.tsx";
+import Contact from "@pages/Contact.tsx";
+import Experiences from "@pages/Experiences.tsx";
+import Home from "@pages/Home.tsx";
+import NotFound from "@pages/NotFound.tsx";
+import Ping from "@pages/Ping.tsx";
+import Projects from "@pages/Projects.tsx";
+import UnderConstruction from "@pages/UnderConstruction.tsx";
 
 const routeMap = {
   [RoutePaths.HOME]: Home,
