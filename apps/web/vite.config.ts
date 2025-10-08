@@ -11,6 +11,19 @@ export default ({ mode }: { mode: string }) => {
 
   return defineConfig({
     plugins: [deno(), react()],
+    resolve: {
+      alias: {
+        "@components": path.resolve(__dirname, "./src/components"),
+        "@pages": path.resolve(__dirname, "./src/pages"),
+        "@sections": path.resolve(__dirname, "./src/sections"),
+        "@entities": path.resolve(__dirname, "./src/entities"),
+        "@routes": path.resolve(__dirname, "./src/routes"),
+        "@configs": path.resolve(__dirname, "./src/configs"),
+        "@constants": path.resolve(__dirname, "./src/constants"),
+        "@providers": path.resolve(__dirname, "./src/providers"),
+        "@assets": path.resolve(__dirname, "./src/assets"),
+      },
+    },
     server: {
       proxy: {
         "/api": {

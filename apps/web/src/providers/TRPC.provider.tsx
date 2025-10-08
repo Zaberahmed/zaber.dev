@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { queryClient } from "../configs/tanstack-query.ts";
-import { trpc as TRPC, trpcClient } from "../configs/trpc.ts";
+import { queryClient } from "@configs/tanstack-query.ts";
+import { trpc as TRPC, trpcClient } from "@configs/trpc.ts";
 
 interface TRPCProviderProps {
   children: ReactNode;

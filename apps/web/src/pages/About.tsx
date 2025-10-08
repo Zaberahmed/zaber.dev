@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { RoutePaths } from "../entities/index.ts";
+import { RoutePaths } from "@entities/index.ts";
 
 // About page component
 const About = () => {

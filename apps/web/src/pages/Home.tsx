@@ -1,6 +1,6 @@
 import { HeroHighlight, Highlight } from "@packages/shadcn/ui";
 import { motion } from "framer-motion";
-import Navbar from "../sections/navbar/index.ts";
+import Navbar from "@sections/navbar/index.ts";
 
 const Home = () => {
   return (

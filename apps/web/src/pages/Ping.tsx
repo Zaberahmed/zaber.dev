@@ -1,5 +1,5 @@
-import { trpc } from "../configs/trpc.ts";
-import { RoutePaths } from "../entities/index.ts";
+import { trpc } from "@configs/trpc.ts";
+import { RoutePaths } from "@entities/index.ts";
 
 const Ping = () => {
   const { data, error, isLoading } = trpc.ping.useQuery();

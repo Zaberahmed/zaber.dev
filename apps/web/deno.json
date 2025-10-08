@@ -18,6 +18,15 @@
   },
 
   "imports": {
+    "@components/": "./src/components/",
+    "@pages/": "./src/pages/",
+    "@sections/": "./src/sections/",
+    "@entities/": "./src/entities/",
+    "@routes/": "./src/routes/",
+    "@configs/": "./src/configs/",
+    "@constants/": "./src/constants/",
+    "@providers/": "./src/providers/",
+    "@assets/": "./src/assets/",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.4",
     "@tanstack/react-query": "npm:@tanstack/react-query@^5.75.1",
     "@trpc/client": "npm:@trpc/client@^11.1.2",

@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { TimeConstants } from "../constants/index.ts";
+import { TimeConstants } from "@constants/index.ts";
 
 const queryOptions = {
   queries: {

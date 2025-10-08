@@ -1,4 +1,4 @@
-import { RoutePaths } from "../../entities/route-paths.ts";
+import { RoutePaths } from "@entities/route-paths.ts";
 
 export type NavbarPaths = Exclude<RoutePaths, "*" | "/">;
 type NavbarLabels =

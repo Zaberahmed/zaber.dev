@@ -12,7 +12,7 @@ import {
   navbarItems,
   type NavbarPaths,
   type NavbarItem,
-} from "./Navbar.constant.ts";
+} from "@sections/navbar/Navbar.constant.ts";
 import type { Icon, IconProps } from "tabler-icons-react";
 
 const iconMap: Record<
