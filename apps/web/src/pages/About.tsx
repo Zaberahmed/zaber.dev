@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { RoutePaths } from "../entities/index.ts";
 
 // About page component
 const About = () => {
@@ -8,7 +9,9 @@ const About = () => {
       <p className="mb-4">
         This is a simple about page to demonstrate React Router.
       </p>
-      <Link to="/home" className="text-blue-500 hover:text-blue-700 underline">
+      <Link
+        to={RoutePaths.HOME}
+        className="text-blue-500 hover:text-blue-700 underline">
         Go back to Home
       </Link>
     </div>
