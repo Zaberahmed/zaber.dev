@@ -1,7 +1,7 @@
 import {
   serveDir,
   serveFile,
-} from "https://deno.land/std@0.224.0/http/file_server.ts";
+} from "@std/http/file-server";
 
 Deno.serve(async (req) => {
   const url = new URL(req.url);

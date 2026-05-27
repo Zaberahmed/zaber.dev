@@ -23,6 +23,7 @@
   "workspace": ["apps/api", "apps/web", "packages/shadcn"],
 
   "deploy": {
+    "org": "zaberahmedorg",
     "api": {
       "project": "zaber-api",
       "exclude": ["**/node_modules"],

@@ -1,5 +1,5 @@
 import { handleProcedure } from "@utils/index.ts";
-import { Pool } from "npm:pg";
+import { Pool } from "pg";
 
 function createPool(connectionString: string): Pool {
   return new Pool({
