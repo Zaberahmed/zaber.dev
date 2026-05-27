@@ -1,18 +1,15 @@
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
-import { db, schema } from "@db/index.ts";
-import {
-  ForbiddenErrorMessages,
-  UnauthorizedErrorMessages,
-} from "@constants/index.ts";
-import { hashPassword, verifyPassword, createToken } from "./auth.utils.ts";
+import { db, schema } from "@db";
+import { ForbiddenErrorMessages, UnauthorizedErrorMessages } from "@constants";
+import { createToken, hashPassword, verifyPassword } from "./auth.utils.ts";
 import { ADMIN_SETUP_KEY } from "./auth.constants.ts";
 import type {
   LoginResponse,
   SessionResponse,
   UserAuthResponse,
 } from "./auth.types.ts";
-import type { LoginInput, CreateInitialAdminInput } from "./auth.schema.ts";
+import type { CreateInitialAdminInput, LoginInput } from "./auth.schema.ts";
 
 class AuthService {
   private users = schema.users;
@@ -77,7 +74,7 @@ class AuthService {
   }
 
   async createInitialAdmin(
-    input: CreateInitialAdminInput
+    input: CreateInitialAdminInput,
   ): Promise<UserAuthResponse> {
     const { email, password, name, setupKey } = input;
 

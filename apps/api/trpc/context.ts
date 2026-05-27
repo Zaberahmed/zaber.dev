@@ -1,5 +1,5 @@
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { verifyToken } from "@modules/auth/auth.utils.ts";
+import { verifyToken } from "@lib";
 
 export type TContext = Awaited<ReturnType<typeof createContext>>;
 

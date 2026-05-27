@@ -7,7 +7,7 @@ export default ({ mode }: { mode: string }) => {
   const root = path.resolve(__dirname, "../../");
   const env = loadEnv(mode, root, "");
 
-  const apiUrl = env.VITE_API_URL;
+  const apiUrl = "zaber.deno.dev";
 
   return defineConfig({
     plugins: [deno(), react()],
@@ -25,6 +25,8 @@ export default ({ mode }: { mode: string }) => {
       },
     },
     server: {
+      host: "zaber.deno.dev",
+      port: 5173,
       proxy: {
         "/api": {
           target: apiUrl,

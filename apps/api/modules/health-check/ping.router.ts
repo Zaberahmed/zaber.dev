@@ -1,17 +1,20 @@
-import { createSuccessResponse } from "@utils/index.ts";
-import { publicProcedure, router } from "@trpc/index.ts";
-import { checkDatabaseConnection, pool } from "@db/index.ts";
+import { assertPoolConnection, pool } from "@db";
+import { createSuccessResponse, handleProcedure } from "@lib";
+import { publicProcedure, router } from "@trpc";
 
 const pingRouter = router({
-  ping: publicProcedure.query(async () => {
-    await checkDatabaseConnection(pool);
-    return createSuccessResponse(
-      "Health check request processed successfully",
-      {
-        greeting: "Hello World!",
-      }
-    );
-  }),
+  ping: publicProcedure.query(() =>
+    handleProcedure(async () => {
+      await assertPoolConnection(pool);
+
+      return createSuccessResponse(
+        "Health check request processed successfully",
+        {
+          greeting: "Hello World!",
+        },
+      );
+    }, "check database health")
+  ),
 });
 
 export { pingRouter };

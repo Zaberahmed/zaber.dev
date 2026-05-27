@@ -1,5 +1,5 @@
-import { adminProcedure, publicProcedure, router } from "@trpc/index.ts";
-import { createSuccessResponse, handleProcedure } from "@utils/index.ts";
+import { adminProcedure, publicProcedure, router } from "@trpc";
+import { createSuccessResponse, handleProcedure } from "@lib";
 import { UserSuccessMessages } from "./user.constant.ts";
 import { deleteUserByIdSchema, getUserByIdSchema } from "./user.schema.ts";
 import { userService } from "./user.service.ts";
@@ -22,7 +22,7 @@ export const userRouter = router({
       return createSuccessResponse(
         UserSuccessMessages.USER_ALL_RETRIEVED,
         result.users,
-        result.count
+        result.count,
       );
     }, "retrieve users");
   }),
@@ -42,7 +42,7 @@ export const userRouter = router({
       return createSuccessResponse(
         UserSuccessMessages.USER_DELETED_ALL,
         undefined,
-        deletedCount
+        deletedCount,
       );
     }, "delete users");
   }),

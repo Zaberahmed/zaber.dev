@@ -13,9 +13,3 @@ export interface LoginResponse {
 export interface SessionResponse {
   user: UserAuthResponse;
 }
-
-export interface Session {
-  userId: string;
-  isAdmin: boolean;
-  expiresAt: number;
-}

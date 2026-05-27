@@ -4,16 +4,16 @@
     "./trpc": "./trpc/index.ts"
   },
   "tasks": {
-    "dev": "deno run --allow-env --allow-net --allow-read --allow-ffi --env-file=.env.dev --watch index.ts",
+    "dev": "deno run --allow-env --allow-net --allow-read --allow-ffi --env-file=.env --watch index.ts",
     "db:generate": "deno run -A npm:drizzle-kit generate",
     "db:migrate": "deno run -A db/migrate.ts"
   },
   "imports": {
-    "@modules/": "./modules/",
-    "@trpc/": "./trpc/",
-    "@constants/": "./constants/",
-    "@utils/": "./utils/",
-    "@db/": "./db/",
+    "@modules": "./modules/index.ts",
+    "@trpc": "./trpc/index.ts",
+    "@constants": "./constants/index.ts",
+    "@lib": "./lib/index.ts",
+    "@db": "./db/index.ts",
 
     "@trpc/server": "npm:@trpc/server@^11.1.2",
     "@types/cors": "npm:@types/cors@^2.8.17",
@@ -29,7 +29,7 @@
   "deploy": {
     "project": "zaber-api",
     "exclude": ["**/node_modules"],
-    "include": ["apps/api"],
+    "include": ["apps/api", "packages/constants"],
     "entrypoint": "apps/api/index.ts"
   }
 }

@@ -20,20 +20,25 @@
   },
   "nodeModulesDir": "auto",
 
-  "workspace": ["apps/api", "apps/web", "packages/shadcn"],
+  "workspace": [
+    "apps/api",
+    "apps/web",
+    "packages/shadcn",
+    "packages/constants"
+  ],
 
   "deploy": {
     "org": "zaberahmedorg",
     "api": {
       "project": "zaber-api",
       "exclude": ["**/node_modules"],
-      "include": ["apps/api"],
+      "include": ["apps/api", "packages/constants"],
       "entrypoint": "apps/api/index.ts"
     },
     "web": {
       "project": "zaber",
       "exclude": ["**/node_modules"],
-      "include": ["apps/web", "packages/shadcn"],
+      "include": ["apps/web", "packages/shadcn", "packages/constants"],
       "entrypoint": "apps/web/server.ts"
     }
   }

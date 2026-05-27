@@ -1,9 +1,6 @@
-import { SignJWT, jwtVerify } from "jose";
-import type { Session } from "./auth.types.ts";
-import { JWT_ALGORITHM, JWT_SECRET, TOKEN_EXPIRY } from "./auth.constants.ts";
-
-// Convert string to Uint8Array for JWT signing
-const getSecretKey = () => new TextEncoder().encode(JWT_SECRET);
+import { SignJWT } from "jose";
+import { TOKEN_EXPIRY } from "./auth.constants.ts";
+import { getSecretKey, type Session, verifyToken } from "@lib";
 
 // Web Crypto API for password hashing (scrypt)
 // Salt is stored as part of the hash string
@@ -27,9 +24,9 @@ export async function hashPassword(password: string): Promise<string> {
       passwordBuffer,
       { name: "PBKDF2" },
       false,
-      ["deriveBits"]
+      ["deriveBits"],
     ),
-    256
+    256,
   );
 
   // Convert key to array for storage
@@ -46,14 +43,14 @@ export async function hashPassword(password: string): Promise<string> {
 
 export async function verifyPassword(
   password: string,
-  storedHash: string
+  storedHash: string,
 ): Promise<boolean> {
   try {
     // Decode the stored hash to get the salt + key
     const combined = Uint8Array.from(
       atob(storedHash)
         .split("")
-        .map((c) => c.charCodeAt(0))
+        .map((c) => c.charCodeAt(0)),
     );
 
     // Extract salt (first 16 bytes)
@@ -78,9 +75,9 @@ export async function verifyPassword(
         passwordBuffer,
         { name: "PBKDF2" },
         false,
-        ["deriveBits"]
+        ["deriveBits"],
       ),
-      256
+      256,
     );
 
     // Convert to array for comparison
@@ -105,32 +102,17 @@ export async function verifyPassword(
 }
 
 export async function createToken(
-  session: Omit<Session, "expiresAt">
+  session: Omit<Session, "expiresAt">,
 ): Promise<string> {
   const expiresAt = Math.floor(Date.now() / 1000) + TOKEN_EXPIRY;
 
   const jwt = await new SignJWT({ ...session })
-    .setProtectedHeader({ alg: JWT_ALGORITHM })
+    .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(expiresAt)
     .sign(getSecretKey());
 
   return jwt;
-}
-
-export async function verifyToken(token: string): Promise<Session | null> {
-  try {
-    const { payload } = await jwtVerify(token, getSecretKey());
-
-    return {
-      userId: payload.userId as string,
-      isAdmin: payload.isAdmin as boolean,
-      expiresAt: payload.exp as number,
-    };
-  } catch (error) {
-    console.error("Token verification failed:", error);
-    return null;
-  }
 }
 
 export async function verifyAdminToken(token: string): Promise<boolean> {
