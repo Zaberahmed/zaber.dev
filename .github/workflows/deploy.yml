@@ -1,9 +1,9 @@
 name: Deploy
 on:
   push:
-    branches: main
+    branches: [main]
   pull_request:
-    branches: main
+    branches: [main]
 
 jobs:
   deploy:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Build web app
         env:
-          VITE_APP_URL: ${{ vars.VITE_APP_URL }}
+          VITE_APP_URL: ${{ vars.VITE_API_URL }}
         run: "deno task build:web"
 
       - name: Deploy API to Deno Deploy

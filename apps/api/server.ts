@@ -2,10 +2,11 @@ import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import { appRouter, createContext } from "@trpc";
 import { assertPoolConnection, pool } from "@db";
 import cors from "cors";
+import { env } from "@lib";
 
-const port = Deno.env.get("WEB_LOCAL_PORT") || 5173;
-const web_url = Deno.env.get("WEB_URL") || `http://localhost:${port}`;
-const allowedOrigins = [web_url, `http://127.0.0.1:${port}`];
+const allowedOrigins = env.CORS_ALLOWED_ORIGINS.split(",").map((origin) =>
+  origin.trim()
+);
 
 const corsOptions = {
   origin: [...allowedOrigins],

@@ -1,5 +1,10 @@
 function loadEnvVariables() {
-  const secrets = ["JWT_SECRET", "ADMIN_SETUP_KEY", "DATABASE_URL"];
+  const secrets = [
+    "CORS_ALLOWED_ORIGINS",
+    "JWT_SECRET",
+    "ADMIN_SETUP_KEY",
+    "DATABASE_URL",
+  ];
   for (const secret of secrets) {
     if (!Deno.env.get(secret)) {
       throw new Error(`${secret} not set`);
