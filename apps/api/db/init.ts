@@ -1,9 +1,11 @@
-import { DATABASE_CONNECTION_STRING } from "@constants/index.ts";
 import { drizzle } from "drizzle-orm/node-postgres";
 import * as schema from "./schema.ts";
 import { createPool } from "./utils.ts";
+import { env } from "@lib";
 
-const pool = createPool(DATABASE_CONNECTION_STRING);
+const dbConnectionString = env.DATABASE_URL;
+
+const pool = createPool(dbConnectionString);
 
 // Handle pool errors
 pool.on("error", (err: Error) => {

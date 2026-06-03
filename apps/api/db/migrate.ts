@@ -1,11 +1,10 @@
-import { DATABASE_CONNECTION_STRING } from "@constants/index.ts";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { load } from "https://deno.land/std@0.220.1/dotenv/mod.ts";
+import { load } from "@std/dotenv";
 import * as schema from "./schema.ts";
-import { closeDatabaseConnection, createPool } from "./utils.ts";
+import { closePool, createPool } from "./utils.ts";
 
-let connectionString = DATABASE_CONNECTION_STRING;
+let dbConnectionString = Deno.env.get("DATABASE_URL") || "";
 const args = Deno.args;
 
 // Dynamically load environment variables based on arguments
@@ -14,14 +13,14 @@ if (args.length > 0 && args[0] === "--local") {
 
   try {
     await load({
-      envPath: "../../.env.dev",
+      envPath: "../../.env",
       export: true,
     });
-    connectionString = Deno.env.get("DATABASE_URL") || connectionString;
+    dbConnectionString = Deno.env.get("DATABASE_URL") || dbConnectionString;
   } catch (error) {
     console.warn(
-      "Failed to load .env.dev file:",
-      error instanceof Error ? error.message : String(error)
+      "Failed to load environment file:",
+      error instanceof Error ? error.message : String(error),
     );
   }
 } else if (args.length > 0 && args[0] === "--prod") {
@@ -32,18 +31,18 @@ if (args.length > 0 && args[0] === "--local") {
       envPath: "../../.env.production",
       export: true,
     });
-    connectionString = Deno.env.get("DATABASE_URL") || connectionString;
+    dbConnectionString = Deno.env.get("DATABASE_URL") || dbConnectionString;
   } catch (error) {
     console.warn(
       "Failed to load .env.production file:",
-      error instanceof Error ? error.message : String(error)
+      error instanceof Error ? error.message : String(error),
     );
   }
 } else {
   console.log("No specific mode provided (--local or --prod)");
 }
 
-const pool = createPool(connectionString);
+const pool = createPool(dbConnectionString);
 
 const db = drizzle(pool, { schema });
 
@@ -53,9 +52,9 @@ try {
   console.log("Migration completed successfully");
 } catch (error) {
   console.error("Error during migration:", error);
-  await closeDatabaseConnection(pool);
+  await closePool(pool);
   Deno.exit(1);
 }
 
-await closeDatabaseConnection(pool);
+await closePool(pool);
 Deno.exit(0);

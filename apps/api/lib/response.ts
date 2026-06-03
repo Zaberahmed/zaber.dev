@@ -3,7 +3,7 @@ import {
   InternalServerErrorMessages,
   NotFoundErrorMessages,
   UnknownErrorMessages,
-} from "@constants/index.ts";
+} from "@constants";
 
 /**
  * Creates a success response with consistent structure
@@ -42,8 +42,8 @@ function createNotFoundError(resourceType?: string) {
 
   const message = resourceType
     ? `${
-        resourceType.charAt(0).toUpperCase() + resourceType.slice(1)
-      } not found.`
+      resourceType.charAt(0).toUpperCase() + resourceType.slice(1)
+    } not found.`
     : baseMessage;
 
   throw new TRPCError({
@@ -59,10 +59,9 @@ function createNotFoundError(resourceType?: string) {
 function createInternalServerError(error: unknown) {
   const baseMessage = InternalServerErrorMessages.INTERNAL_SERVER_ERROR_MESSAGE;
 
-  const errorMessage =
-    error instanceof Error
-      ? error.message
-      : UnknownErrorMessages.UNKNOWN_ERROR_MESSAGE;
+  const errorMessage = error instanceof Error
+    ? error.message
+    : UnknownErrorMessages.UNKNOWN_ERROR_MESSAGE;
 
   throw new TRPCError({
     code: "INTERNAL_SERVER_ERROR",
@@ -72,7 +71,7 @@ function createInternalServerError(error: unknown) {
 }
 
 export {
-  createSuccessResponse,
-  createNotFoundError,
   createInternalServerError,
+  createNotFoundError,
+  createSuccessResponse,
 };

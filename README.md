@@ -44,8 +44,7 @@ cd zaber.dev
 
 2. Set up environment variables:
 
-   - Create `.env.dev` in the root directory for local development
-   - Create `.env.production` for production deployment
+   - Create `.env` in the root directory for local development
 
 3. Install dependencies:
 

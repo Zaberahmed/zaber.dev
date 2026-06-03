@@ -5,7 +5,7 @@
     "./server.ts": "./server.ts"
   },
   "tasks": {
-    "dev": "deno run -A --node-modules-dir npm:vite --mode dev",
+    "dev": "deno run -A --node-modules-dir npm:vite --host --mode dev",
     "build": "deno run -A --node-modules-dir npm:vite build --mode production",
     "preview": "deno run -A --node-modules-dir npm:vite preview --mode production",
     "serve": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/"
@@ -27,6 +27,7 @@
     "@constants/": "./src/constants/",
     "@providers/": "./src/providers/",
     "@assets/": "./src/assets/",
+
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.4",
     "@tanstack/react-query": "npm:@tanstack/react-query@^5.75.1",
     "@trpc/client": "npm:@trpc/client@^11.1.2",
@@ -43,12 +44,14 @@
     "tailwindcss": "npm:tailwindcss@^3.4.3",
     "framer-motion": "npm:framer-motion@^12.23.3",
     "tabler-icons-react": "npm:@tabler/icons-react@^3.34.1",
-    "vite": "npm:vite@^6.1.1"
+    "vite": "npm:vite@^6.1.1",
+    "caniuse-lite": "npm:caniuse-lite@latest",
+    "@std/http/file-server": "jsr:@std/http@1/file-server"
   },
   "deploy": {
-    "project": "zaber",
+    "project": "zaber.dev",
     "exclude": ["**/node_modules"],
-    "include": ["apps/web", "packages/shadcn"],
+    "include": ["apps/web", "packages/shadcn", "packages/constants"],
     "entrypoint": "apps/web/server.ts"
   }
 }

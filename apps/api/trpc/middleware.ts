@@ -1,9 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { t } from "./init.ts";
-import {
-  ForbiddenErrorMessages,
-  UnauthorizedErrorMessages,
-} from "@constants/index.ts";
+import { ForbiddenErrorMessages, UnauthorizedErrorMessages } from "@constants";
 
 /**
  * Middleware that checks if user is authenticated

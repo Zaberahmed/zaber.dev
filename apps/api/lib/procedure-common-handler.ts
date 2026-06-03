@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server/unstable-core-do-not-import";
-import { UnknownErrorMessages } from "@constants/index.ts";
+import { UnknownErrorMessages } from "@constants";
 
 /**
  * Handles common try-catch pattern for TRPC procedures
@@ -8,7 +8,7 @@ import { UnknownErrorMessages } from "@constants/index.ts";
  */
 async function handleProcedure<T>(
   fn: () => Promise<T>,
-  errorContext: string = "operation"
+  errorContext: string = "operation",
 ): Promise<T> {
   try {
     return await fn();
@@ -19,10 +19,9 @@ async function handleProcedure<T>(
     }
 
     // Otherwise, wrap in a proper TRPC error
-    const errorMessage =
-      error instanceof Error
-        ? error.message
-        : UnknownErrorMessages.UNKNOWN_ERROR_MESSAGE;
+    const errorMessage = error instanceof Error
+      ? error.message
+      : UnknownErrorMessages.UNKNOWN_ERROR_MESSAGE;
 
     throw new TRPCError({
       code: "INTERNAL_SERVER_ERROR",

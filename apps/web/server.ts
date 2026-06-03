@@ -1,10 +1,43 @@
-import {
-  serveDir,
-  serveFile,
-} from "https://deno.land/std@0.224.0/http/file_server.ts";
+import { serveDir, serveFile } from "@std/http/file-server";
+
+const apiProxyUrl = Deno.env.get("API_PROXY_URL") ||
+  "https://zaber-api.deno.dev";
+
+function createProxyUrl(requestUrl: URL): URL {
+  const apiUrl = new URL(apiProxyUrl);
+  const apiBasePath = apiUrl.pathname.replace(/\/$/, "");
+  const proxiedPath = requestUrl.pathname.replace(/^\/api/, "") || "/";
+
+  apiUrl.pathname = `${apiBasePath}${proxiedPath}`;
+  apiUrl.search = requestUrl.search;
+
+  return apiUrl;
+}
+
+function createProxyHeaders(req: Request): Headers {
+  const headers = new Headers(req.headers);
+  headers.delete("host");
+  return headers;
+}
+
+async function proxyApiRequest(req: Request, url: URL): Promise<Response> {
+  const proxiedUrl = createProxyUrl(url);
+  const canHaveBody = req.method !== "GET" && req.method !== "HEAD";
+
+  return await fetch(proxiedUrl, {
+    method: req.method,
+    headers: createProxyHeaders(req),
+    body: canHaveBody ? req.body : undefined,
+    redirect: "manual",
+  });
+}
 
 Deno.serve(async (req) => {
   const url = new URL(req.url);
+
+  if (url.pathname === "/api" || url.pathname.startsWith("/api/")) {
+    return await proxyApiRequest(req, url);
+  }
 
   // Try to serve the requested file
   try {

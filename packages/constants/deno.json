@@ -1,0 +1,4 @@
+{
+  "name": "@scope/constants",
+  "exports": "./index.ts"
+}

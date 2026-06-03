@@ -1,12 +1,12 @@
 import { QueryClient } from "@tanstack/react-query";
-import { TimeConstants } from "@constants/index.ts";
+import { TimeConstants } from "@scope/constants";
 
 const queryOptions = {
   queries: {
     retry: false,
     refetchOnWindowFocus: false,
-    staleTime: TimeConstants.FIVE_MINUTES,
-    cacheTime: TimeConstants.TEN_MINUTES,
+    staleTime: TimeConstants.FIVE_MINUTES * 1000,
+    cacheTime: TimeConstants.TEN_MINUTES * 1000,
   },
   mutations: {
     retry: false,
