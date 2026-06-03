@@ -4,14 +4,12 @@
     "db:migrate": "deno task --cwd=apps/api db:migrate",
 
     "dev:api": "deno task --cwd=apps/api dev",
-    "deploy:api": "deno deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production --include=apps/api --include=apps/web/deno.json --include=packages/constants --include=packages/shadcn/deno.json --include=deno.json --include=deno.lock --exclude=node_modules --exclude='**/node_modules/**'",
-
+    "deploy:api": "deno deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production --include=apps/api,packages/constants --exclude=node_modules",
     "dev:web": "deno task --cwd=apps/web dev",
     "build:web": "deno task --cwd=apps/web build",
     "preview:web": "deno task --cwd=apps/web preview",
     "serve:web": "deno task --cwd=apps/web serve",
-    "deploy:web": "deno task build:web && deno deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production --include=apps/web --include=apps/api/deno.json --include=packages --include=deno.json --include=deno.lock --exclude=node_modules --exclude='**/node_modules/**'",
-
+    "deploy:web": "deno task build:web && deno deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production --include=apps/web,packages/** --exclude=node_modules",
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",
     "lint": "deno lint",
