@@ -34,7 +34,7 @@ jobs:
         with:
           project: "zaber-api"
           entrypoint: "apps/api/index.ts"
-          include: apps/api/**
+          include: apps/api/**,packages/constants/**,deno.json,deno.lock
           exclude: node_modules
 
       - name: Deploy Web to Deno Deploy
@@ -43,5 +43,5 @@ jobs:
         with:
           project: "zaber"
           entrypoint: "apps/web/server.ts"
-          include: apps/web/**, packages/**
+          include: apps/web/server.ts,apps/web/deno.json,apps/web/dist/**,packages/**,deno.json,deno.lock
           exclude: node_modules
