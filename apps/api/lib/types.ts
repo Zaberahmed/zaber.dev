@@ -3,9 +3,25 @@ export interface Session {
   isAdmin: boolean;
   expiresAt: number;
 }
+
+export type DeploymentMode = "local" | "production";
+
 export type Secret =
-  | "API_LOCAL_PORT"
+  | "DEPLOYMENT_MODE"
   | "CORS_ALLOWED_ORIGINS"
   | "JWT_SECRET"
   | "ADMIN_SETUP_KEY"
   | "DATABASE_URL";
+
+type BaseEnv = Record<Secret, string>;
+
+export type LocalEnv = BaseEnv & {
+  DEPLOYMENT_MODE: "local";
+  API_LOCAL_PORT: string;
+};
+
+export type ProductionEnv = BaseEnv & {
+  DEPLOYMENT_MODE: "production";
+};
+
+export type Env = LocalEnv | ProductionEnv;

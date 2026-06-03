@@ -1,8 +1,16 @@
-import { env } from "./lib/env.ts";
+import { env } from "@lib";
 import { createServer } from "./server.ts";
 
 const server = await createServer();
 
-server.listen(env.API_LOCAL_PORT, () => {
-  console.log(`🖥  Server is listening on ${env.API_LOCAL_PORT}`);
-});
+if (env.DEPLOYMENT_MODE === "local") {
+  const apiLocalPort = env.API_LOCAL_PORT;
+
+  server.listen(apiLocalPort, () => {
+    console.log(`🖥  Server is listening on ${apiLocalPort}`);
+  });
+} else {
+  server.listen(() => {
+    console.log("🖥  Server is listening");
+  });
+}
