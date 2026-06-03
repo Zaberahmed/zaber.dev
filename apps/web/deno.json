@@ -27,6 +27,8 @@
     "@constants/": "./src/constants/",
     "@providers/": "./src/providers/",
     "@assets/": "./src/assets/",
+    "@scope/api/trpc": "../api/trpc/index.ts",
+    "@scope/constants": "../../packages/constants/index.ts",
 
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.4",
     "@tanstack/react-query": "npm:@tanstack/react-query@^5.75.1",
