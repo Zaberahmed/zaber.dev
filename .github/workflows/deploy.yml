@@ -34,8 +34,12 @@ jobs:
         with:
           project: "zaber-api"
           entrypoint: "apps/api/index.ts"
-          include: apps/api/**,packages/constants/**,deno.json,deno.lock
-          exclude: node_modules
+          include: |
+            apps/api/**
+            packages/constants/**
+          exclude: |
+            node_modules
+            **/node_modules/**
 
       - name: Deploy Web to Deno Deploy
         uses: denoland/deployctl@v1
@@ -43,5 +47,9 @@ jobs:
         with:
           project: "zaber"
           entrypoint: "apps/web/server.ts"
-          include: apps/web/server.ts,apps/web/deno.json,apps/web/dist/**,packages/**,deno.json,deno.lock
-          exclude: node_modules
+          include: |
+            apps/web/**
+            packages/**
+          exclude: |
+            node_modules
+            **/node_modules/**
