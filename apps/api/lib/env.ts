@@ -1,5 +1,7 @@
+import type { Secret } from "./types.ts";
+
 function loadEnvVariables() {
-  const secrets = [
+  const secrets: Secret[] = [
     "CORS_ALLOWED_ORIGINS",
     "JWT_SECRET",
     "ADMIN_SETUP_KEY",
@@ -13,6 +15,6 @@ function loadEnvVariables() {
   return secrets.reduce((acc, secret) => {
     acc[secret] = Deno.env.get(secret) || "";
     return acc;
-  }, {} as Record<string, string>);
+  }, {} as Record<Secret, string>);
 }
 export const env = loadEnvVariables();
