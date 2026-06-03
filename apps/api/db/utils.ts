@@ -20,7 +20,7 @@ async function assertPoolConnection(pool: Pool): Promise<void> {
   try {
     client = await pool.connect();
     await client.query("SELECT 1");
-    console.log("🚀 Connected to database");
+    console.log("🛢  Connected to database");
   } catch (error) {
     console.error("Failed to connect to database:", error);
     throw error;

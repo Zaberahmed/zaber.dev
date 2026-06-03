@@ -6,8 +6,8 @@ import { defineConfig, loadEnv } from "vite";
 export default ({ mode }: { mode: string }) => {
   const root = path.resolve(__dirname, "../../");
   const env = loadEnv(mode, root, "");
-
-  const apiUrl = "zaber.deno.dev";
+  const apiPort = env.API_LOCAL_PORT || "6200";
+  const apiUrl = `http://127.0.0.1:${apiPort}`;
 
   return defineConfig({
     plugins: [deno(), react()],
@@ -31,6 +31,7 @@ export default ({ mode }: { mode: string }) => {
         "/api": {
           target: apiUrl,
           changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ""),
         },
       },
     },

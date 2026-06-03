@@ -27,6 +27,7 @@
     "@constants/": "./src/constants/",
     "@providers/": "./src/providers/",
     "@assets/": "./src/assets/",
+
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.4",
     "@tanstack/react-query": "npm:@tanstack/react-query@^5.75.1",
     "@trpc/client": "npm:@trpc/client@^11.1.2",
@@ -44,6 +45,7 @@
     "framer-motion": "npm:framer-motion@^12.23.3",
     "tabler-icons-react": "npm:@tabler/icons-react@^3.34.1",
     "vite": "npm:vite@^6.1.1",
+    "caniuse-lite": "npm:caniuse-lite@latest",
     "@std/http/file-server": "jsr:@std/http@1/file-server"
   },
   "deploy": {

@@ -30,6 +30,7 @@
     "npm:@types/react@19.0.10": "19.0.10",
     "npm:@vitejs/plugin-react-swc@^3.8.0": "3.10.0_vite@6.3.5__picomatch@4.0.2__@types+node@22.15.15_@types+node@22.15.15",
     "npm:autoprefixer@^10.4.19": "10.4.21_postcss@8.5.3",
+    "npm:caniuse-lite@latest": "1.0.30001760",
     "npm:class-variance-authority@0.7": "0.7.1",
     "npm:class-variance-authority@~0.7.1": "0.7.1",
     "npm:clsx@2": "2.1.1",
@@ -933,8 +934,8 @@
     "camelcase@7.0.1": {
       "integrity": "sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw=="
     },
-    "caniuse-lite@1.0.30001718": {
-      "integrity": "sha512-AflseV1ahcSunK53NfEs9gFWgOEmzr0f+kaMFA4xiLZlr9Hzt7HxcSpIFcnNCUkz6R6dWKa54rUz3HUmI3nVcw=="
+    "caniuse-lite@1.0.30001760": {
+      "integrity": "sha512-7AAMPcueWELt1p3mi13HR/LHH0TJLT11cnwDJEs3xA4+CK/PLKeO9Kl1oru24htkyUKtkGCvAx4ohB0Ttry8Dw=="
     },
     "chalk@5.4.1": {
       "integrity": "sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w=="
@@ -2178,6 +2179,7 @@
           "npm:@types/react@19.0.10",
           "npm:@vitejs/plugin-react-swc@^3.8.0",
           "npm:autoprefixer@^10.4.19",
+          "npm:caniuse-lite@latest",
           "npm:framer-motion@^12.23.3",
           "npm:postcss@^8.4.38",
           "npm:react-dom@19.0.0",
