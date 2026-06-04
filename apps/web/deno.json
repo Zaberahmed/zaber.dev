@@ -51,7 +51,7 @@
     "@std/http/file-server": "jsr:@std/http@1/file-server"
   },
   "deploy": {
-    "project": "zaber.dev",
+    "project": "zaber",
     "exclude": ["**/node_modules"],
     "include": ["apps/web", "packages/shadcn", "packages/constants"],
     "entrypoint": "apps/web/server.ts"
