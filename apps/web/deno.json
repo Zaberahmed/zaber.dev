@@ -48,7 +48,8 @@
     "tabler-icons-react": "npm:@tabler/icons-react@^3.34.1",
     "vite": "npm:vite@^6.1.1",
     "caniuse-lite": "npm:caniuse-lite@latest",
-    "@std/http/file-server": "jsr:@std/http@1/file-server"
+    "@std/http/file-server": "jsr:@std/http@1/file-server",
+    "@std/path": "jsr:@std/path@1"
   },
   "deploy": {
     "project": "zaber",
