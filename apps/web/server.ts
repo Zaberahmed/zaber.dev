@@ -1,4 +1,8 @@
 import { serveDir, serveFile } from "@std/http/file-server";
+import { dirname, fromFileUrl, join } from "@std/path";
+
+const __dirname = dirname(fromFileUrl(import.meta.url));
+const distDir = join(__dirname, "dist");
 
 const apiProxyUrl = Deno.env.get("API_PROXY_URL") ||
   "https://zaber-api.deno.dev";
@@ -42,7 +46,7 @@ Deno.serve(async (req) => {
   // Try to serve the requested file
   try {
     const response = await serveDir(req, {
-      fsRoot: "apps/web/dist",
+      fsRoot: distDir,
       urlRoot: "",
       quiet: true, // Suppress 404 logs for non-existent files
     });
@@ -72,5 +76,5 @@ Deno.serve(async (req) => {
 
   // For non-existent files without extensions (like SPA routes), serve index.html
   // This enables client-side routing to work on page refresh
-  return serveFile(req, "apps/web/dist/index.html");
+  return serveFile(req, join(distDir, "index.html"));
 });

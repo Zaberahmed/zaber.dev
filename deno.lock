@@ -2169,6 +2169,7 @@
       "apps/web": {
         "dependencies": [
           "jsr:@std/http@1",
+          "jsr:@std/path@1",
           "npm:@deno/vite-plugin@^1.0.4",
           "npm:@tabler/icons-react@^3.34.1",
           "npm:@tanstack/react-query@^5.75.1",
