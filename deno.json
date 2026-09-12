@@ -11,7 +11,7 @@
     "preview:web": "deno task --cwd=apps/web preview",
     "serve:web": "deno task --cwd=apps/web serve",
 
-    "deploy:server": "deno task build:web && deno deploy --project=zaber --prod apps/server/index.ts --env-file=.env.production --include=apps/server,apps/api,apps/web/dist,packages/constants --exclude=node_modules",
+    "deploy:server": "deno task build:web && deployctl deploy --prod --env-file=.env.production",
 
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",
@@ -31,16 +31,14 @@
 
   "deploy": {
     "org": "zaberahmedorg",
-    "server": {
-      "project": "zaber",
-      "exclude": ["**/node_modules"],
-      "include": [
-        "apps/server",
-        "apps/api",
-        "apps/web/dist",
-        "packages/constants"
-      ],
-      "entrypoint": "apps/server/index.ts"
-    }
+    "project": "zaber",
+    "entrypoint": "apps/server/index.ts",
+    "include": [
+      "apps/server",
+      "apps/api",
+      "apps/web/dist",
+      "packages/constants"
+    ],
+    "exclude": ["**/node_modules"]
   }
 }
