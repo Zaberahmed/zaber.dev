@@ -448,29 +448,68 @@ import { myUtility } from "@scope/my-package";
 
 ## Deployment
 
-This project uses [Deno Deploy](https://deno.com/deploy) for hosting as a single project.
+This project uses [Deno Deploy](https://docs.deno.com/deploy/) (the new platform, console.deno.com) for hosting as a single application.
 
 ### Prerequisites
 
-1. **Install Deno Deploy CLI:**
+1. **Create an access token:**
+   - Visit https://console.deno.com/account/tokens
+   - Click **Create Token** → name it (e.g. `cli-deploy`)
+   - Copy the token — you'll only see it once
+
+2. **Export the token in your shell:**
 
    ```bash
-   deno install -Arf jsr:@deno/deployctl
+   export DENO_DEPLOY_TOKEN="ddo_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
    ```
 
-2. **Authenticate:**
+   To persist across sessions, add it to `~/.zshrc` (or `~/.bashrc`) and `source` it.
 
-   ```bash
-   deployctl login
-   ```
+### One-time app setup
 
-3. **Create a single project on Deno Deploy:**
-   - Create a project named `zaber` (it will be available at `zaber.deno.dev`).
-   - The old `zaber-api` project is no longer deployed and can be deleted from the dashboard.
+The first time you deploy, create the app on Deno Deploy:
 
-### Deployment Steps
+**Option A — UI:**
+1. Visit https://console.deno.com/zaberahmedorg
+2. Click **New App**
+3. Pick **Deploy from your local source code** (or link the GitHub repo)
+4. App name: `zaber`, Organization: `zaberahmedorg`
+5. Configure runtime:
+   - **Runtime mode**: Dynamic
+   - **Entrypoint**: `apps/server/index.ts`
+   - **Build command**: `deno task build:web`
+   - **Install command**: `deno install`
+6. Add environment variables in the **Env Vars** tab (see below)
+7. Save
 
-#### Deploy
+**Option B — CLI:**
+```bash
+deno deploy create \
+  --org=zaberahmedorg \
+  --app=zaber \
+  --source=local \
+  --entrypoint=apps/server/index.ts \
+  --install-command="deno install" \
+  --build-command="deno task build:web"
+```
+
+### Load environment variables
+
+After the app is created, push your production env into the project's dashboard:
+
+```bash
+deno deploy env load .env.production
+```
+
+This reads `.env.production` and creates each variable as a secret (auto-detected from name patterns like `*SECRET*`, `*KEY*`, etc.). Re-run any time `.env.production` changes.
+
+Required runtime vars (everything else is obsolete):
+- `DEPLOYMENT_MODE=production`
+- `JWT_SECRET`
+- `ADMIN_SETUP_KEY`
+- `DATABASE_URL`
+
+### Deploy
 
 ```bash
 deno task deploy
@@ -478,61 +517,31 @@ deno task deploy
 
 This command:
 
-- Builds the web app (`deno task build:web`) so `apps/web/dist` is up to date.
-- Deploys to the `zaber` project as a single application.
-- Uses the production environment file (`.env.production`).
-- Includes `apps/server`, `apps/api`, `apps/web/dist`, and `packages/constants`.
-- Excludes `node_modules`.
+- Reads the `deploy` block in `deno.json` (install command, build command, runtime entrypoint)
+- Builds the web app locally (`deno task build:web`) so `apps/web/dist` is up to date
+- Uploads the project root to Deno Deploy, excluding `node_modules`, `.git`, `.vscode`, `.zed`, `.kilo`
+- Deploys to the production timeline of the `zaber` app
 
-#### Deploy Server Explicitly
+### Continuous deployment (optional)
 
-```bash
-deno task deploy:server
-```
+Link the GitHub repo in the dashboard for automatic builds on push to `main`. The `deploy` block in `deno.json` is honored by both CLI and GitHub-triggered builds.
 
-Equivalent to `deno task deploy`.
+### Deploy configuration
 
-### Continuous Deployment
-
-For automated deployments:
-
-1. **GitHub Integration:**
-
-   - Link your GitHub repository in the Deno Deploy dashboard for the `zaber` project.
-   - Configure automatic deployments on push to `main` branch.
-
-2. **Custom Deploy Configuration:**
-
-The deployment configuration is defined in the root [deno.json](deno.json):
+Defined in the root [deno.json](deno.json):
 
 ```json
 {
   "deploy": {
-    "server": {
-      "project": "zaber",
-      "exclude": ["**/node_modules"],
-      "include": [
-        "apps/server",
-        "apps/api",
-        "apps/web/dist",
-        "packages/constants"
-      ],
+    "install": "deno install",
+    "build": "deno task build:web",
+    "runtime": {
+      "type": "dynamic",
       "entrypoint": "apps/server/index.ts"
     }
   }
 }
 ```
-
-### Environment Variables
-
-Set these in the Deno Deploy dashboard for the `zaber` project, or in `.env.production` at the root:
-
-- `DEPLOYMENT_MODE` — `production` in deployed environments
-- `JWT_SECRET` — JWT signing secret
-- `ADMIN_SETUP_KEY` — Admin bootstrap key
-- `DATABASE_URL` — Postgres connection string
-
-CORS is no longer needed for web→API calls (same origin). The `CORS_ALLOWED_ORIGINS`, `VITE_API_URL`, and `API_PROXY_URL` variables from the previous split deployment are obsolete.
 
 ---
 
