@@ -1,6 +1,6 @@
 # zaber.dev
 
-A modern full-stack monorepo portfolio built with Deno, featuring a tRPC API backend and React frontend with Tailwind CSS.
+A modern full-stack monorepo portfolio built with Deno, featuring a tRPC API backend and React frontend with Tailwind CSS. Both apps are deployed as a single Deno Deploy project serving from `zaber.deno.dev` — the web SPA at `/` and the tRPC API at `/api/*`.
 
 ## Table of Contents
 
@@ -20,9 +20,11 @@ This project is a monorepo workspace that contains:
 
 - **API** (`apps/api`): A tRPC-based backend with authentication, user management, and database integration using Drizzle ORM
 - **Web** (`apps/web`): A React frontend built with Vite, TanStack Query, and Tailwind CSS
+- **Server** (`apps/server`): The unified deployable. A single Deno.serve entrypoint that mounts the tRPC fetch handler at `/api/*` and serves the built web SPA at every other route.
 - **Shadcn UI** (`packages/shadcn`): Shared UI component library
+- **Constants** (`packages/constants`): Shared constants
 
-The project uses Deno as the runtime and package manager, deployed on Deno Deploy.
+`apps/api` and `apps/web` remain independent source-of-truth workspaces — they are composed by `apps/server` for production. The project uses Deno as the runtime and package manager, deployed on Deno Deploy.
 
 ---
 
@@ -76,22 +78,22 @@ This will start both the API and web servers concurrently.
 
 ### Root Level Commands
 
-| Command                 | Description                                             |
-| ----------------------- | ------------------------------------------------------- |
-| `deno task dev`         | Start both API and web development servers concurrently |
-| `deno task dev:api`     | Start only the API development server                   |
-| `deno task dev:web`     | Start only the web development server                   |
-| `deno task build:web`   | Build the web app for production                        |
-| `deno task preview:web` | Preview the production build locally                    |
-| `deno task serve:web`   | Serve the built web app using a file server             |
-| `deno task db:generate` | Generate database migrations from schema changes        |
-| `deno task db:migrate`  | Apply pending database migrations                       |
-| `deno task test`        | Run all tests in the workspace                          |
-| `deno task lint`        | Lint all code in the workspace                          |
-| `deno task format`      | Format all code using Deno's formatter                  |
-| `deno task deploy`      | Deploy both API and web to Deno Deploy                  |
-| `deno task deploy:api`  | Deploy only the API to Deno Deploy                      |
-| `deno task deploy:web`  | Deploy only the web app to Deno Deploy                  |
+| Command                   | Description                                                         |
+| ------------------------- | ------------------------------------------------------------------- |
+| `deno task dev`           | Start both API and web development servers concurrently             |
+| `deno task dev:api`       | Start only the API development server                               |
+| `deno task dev:web`       | Start only the web development server                               |
+| `deno task dev:server`    | Start the unified server (serves SPA + `/api`) locally              |
+| `deno task build:web`     | Build the web app for production                                    |
+| `deno task preview:web`   | Preview the production build locally                                |
+| `deno task serve:web`     | Serve the built web app using a file server                         |
+| `deno task db:generate`   | Generate database migrations from schema changes                    |
+| `deno task db:migrate`    | Apply pending database migrations                                   |
+| `deno task test`          | Run all tests in the workspace                                      |
+| `deno task lint`          | Lint all code in the workspace                                      |
+| `deno task format`        | Format all code using Deno's formatter                              |
+| `deno task deploy`        | Deploy the unified app to Deno Deploy (`zaber.deno.dev`)            |
+| `deno task deploy:server` | Same as `deno task deploy` — builds the web app and deploys the server |
 
 ### API-Specific Commands (from `apps/api`)
 
@@ -134,21 +136,33 @@ deno task serve
 
 ```
 zaber.dev/
-├── apps/               # Application code
-│   ├── api/           # Backend API (tRPC + Drizzle)
-│   └── web/           # Frontend web app (React + Vite)
-├── packages/          # Shared packages
-│   └── shadcn/       # UI component library
-├── deno.json         # Root workspace configuration
-└── README.md         # This file
+├── apps/                  # Application code
+│   ├── api/              # Backend source (tRPC + Drizzle) — runnable standalone for dev
+│   ├── web/              # Frontend source (React + Vite) — builds to apps/web/dist
+│   └── server/           # Unified deployable — serves apps/web/dist + mounts tRPC at /api
+├── packages/             # Shared packages
+│   ├── shadcn/           # UI component library
+│   └── constants/        # Shared constants
+├── deno.json             # Root workspace configuration
+└── README.md             # This file
 ```
+
+### Runtime Routing (in production)
+
+The unified `apps/server` entrypoint routes all incoming requests:
+
+| Path                                | Handler                                    |
+| ----------------------------------- | ------------------------------------------ |
+| `/api`, `/api/<procedure>`          | tRPC fetch handler (mounted at `/api`)     |
+| `/<anything>` with a file extension | Static asset from `apps/web/dist`          |
+| `/`, `/home/`, `/about/`, ...       | `index.html` (SPA fallback for client routes) |
 
 ### API Structure (`apps/api`)
 
 ```
 api/
-├── index.ts              # Entry point
-├── server.ts             # Server configuration
+├── index.ts              # Local dev entry point (runs standalone on :API_LOCAL_PORT)
+├── server.ts             # Local dev server (standalone tRPC HTTP + CORS for proxy)
 ├── deno.json            # API-specific config & scripts
 ├── drizzle.config.ts    # Drizzle ORM configuration
 ├── constants/           # Global constants
@@ -161,10 +175,18 @@ api/
 │   ├── user/          # User management module
 │   └── health-check/  # Health check endpoints
 ├── trpc/              # tRPC configuration
-│   ├── context.ts     # Request context
+│   ├── context.ts     # Request context (Fetch adapter types)
 │   ├── middleware.ts  # Custom middleware
 │   └── router.ts      # Router setup
 └── utils/             # Shared utilities
+```
+
+### Server Structure (`apps/server`)
+
+```
+server/
+├── deno.json            # Server workspace config
+└── index.ts             # Unified Deno.serve entrypoint (tRPC + SPA)
 ```
 
 ### Web Structure (`apps/web`)
@@ -426,76 +448,49 @@ import { myUtility } from "@scope/my-package";
 
 ## Deployment
 
-This project uses [Deno Deploy](https://deno.com/deploy) for hosting.
+This project uses [Deno Deploy](https://deno.com/deploy) for hosting as a single project.
 
 ### Prerequisites
 
 1. **Install Deno Deploy CLI:**
 
-```bash
-deno install -Arf jsr:@deno/deployctl
-```
+   ```bash
+   deno install -Arf jsr:@deno/deployctl
+   ```
 
 2. **Authenticate:**
 
-```bash
-deployctl login
-```
+   ```bash
+   deployctl login
+   ```
 
-3. **Create projects on Deno Deploy:**
-   - Create a project for the API (e.g., `zaber-api`)
-   - Create a project for the web app (e.g., `zaber`)
+3. **Create a single project on Deno Deploy:**
+   - Create a project named `zaber` (it will be available at `zaber.deno.dev`).
+   - The old `zaber-api` project is no longer deployed and can be deleted from the dashboard.
 
 ### Deployment Steps
 
-#### Deploy API
-
-1. **Set environment variables:**
-
-   - Create `.env.production` in the root directory
-   - Or set them in the Deno Deploy dashboard
-
-2. **Deploy:**
-
-```bash
-deno task deploy:api
-```
-
-This command:
-
-- Deploys the API to the `zaber-api` project
-- Uses the production environment file
-- Includes only the `apps/api` directory
-- Excludes `node_modules`
-
-#### Deploy Web
-
-1. **Build the app:**
-
-```bash
-deno task build:web
-```
-
-2. **Deploy:**
-
-```bash
-deno task deploy:web
-```
-
-This command:
-
-- Builds the web app first
-- Deploys to the `zaber` project
-- Includes `apps/web` and `packages/**`
-- Excludes `node_modules`
-
-#### Deploy Both
-
-To deploy both API and web simultaneously:
+#### Deploy
 
 ```bash
 deno task deploy
 ```
+
+This command:
+
+- Builds the web app (`deno task build:web`) so `apps/web/dist` is up to date.
+- Deploys to the `zaber` project as a single application.
+- Uses the production environment file (`.env.production`).
+- Includes `apps/server`, `apps/api`, `apps/web/dist`, and `packages/constants`.
+- Excludes `node_modules`.
+
+#### Deploy Server Explicitly
+
+```bash
+deno task deploy:server
+```
+
+Equivalent to `deno task deploy`.
 
 ### Continuous Deployment
 
@@ -503,8 +498,8 @@ For automated deployments:
 
 1. **GitHub Integration:**
 
-   - Link your GitHub repository in the Deno Deploy dashboard
-   - Configure automatic deployments on push to `main` branch
+   - Link your GitHub repository in the Deno Deploy dashboard for the `zaber` project.
+   - Configure automatic deployments on push to `main` branch.
 
 2. **Custom Deploy Configuration:**
 
@@ -513,17 +508,16 @@ The deployment configuration is defined in the root [deno.json](deno.json):
 ```json
 {
   "deploy": {
-    "api": {
-      "project": "zaber-api",
-      "exclude": ["**/node_modules"],
-      "include": ["apps/api"],
-      "entrypoint": "apps/api/index.ts"
-    },
-    "web": {
+    "server": {
       "project": "zaber",
       "exclude": ["**/node_modules"],
-      "include": ["apps/web", "packages/shadcn"],
-      "entrypoint": "apps/web/server.ts"
+      "include": [
+        "apps/server",
+        "apps/api",
+        "apps/web/dist",
+        "packages/constants"
+      ],
+      "entrypoint": "apps/server/index.ts"
     }
   }
 }
@@ -531,19 +525,14 @@ The deployment configuration is defined in the root [deno.json](deno.json):
 
 ### Environment Variables
 
-Make sure to set these in Deno Deploy dashboard or `.env.production`:
+Set these in the Deno Deploy dashboard for the `zaber` project, or in `.env.production` at the root:
 
-**API:**
+- `DEPLOYMENT_MODE` — `production` in deployed environments
+- `JWT_SECRET` — JWT signing secret
+- `ADMIN_SETUP_KEY` — Admin bootstrap key
+- `DATABASE_URL` — Postgres connection string
 
-- Database connection strings
-- JWT secrets
-- CORS allowed origins
-- Any API keys
-
-**Web:**
-
-- API URL endpoint
-- Any public environment variables
+CORS is no longer needed for web→API calls (same origin). The `CORS_ALLOWED_ORIGINS`, `VITE_API_URL`, and `API_PROXY_URL` variables from the previous split deployment are obsolete.
 
 ---
 

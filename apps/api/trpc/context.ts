@@ -1,9 +1,9 @@
-import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
+import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import { verifyToken } from "@lib";
 
 export type TContext = Awaited<ReturnType<typeof createContext>>;
 
-export async function createContext(opts: CreateNextContextOptions) {
+export async function createContext(opts: FetchCreateContextFnOptions) {
   const { req } = opts;
   // Initialize with null session
   const ctx = {
@@ -13,7 +13,7 @@ export async function createContext(opts: CreateNextContextOptions) {
 
   // Extract token from Authorization header
 
-  const authHeader = req.headers["authorization"];
+  const authHeader = req.headers.get("authorization");
   if (!authHeader?.startsWith("Bearer ")) {
     return ctx;
   }

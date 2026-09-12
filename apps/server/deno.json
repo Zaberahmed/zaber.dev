@@ -1,0 +1,15 @@
+{
+  "name": "@scope/server",
+  "exports": "./index.ts",
+  "tasks": {
+    "dev": "deno run --allow-env --allow-net --allow-read --env-file=.env --watch index.ts"
+  },
+  "imports": {
+    "@scope/api/trpc": "../api/trpc/index.ts",
+    "@scope/api/lib": "../api/lib/index.ts",
+    "@scope/api/db": "../api/db/index.ts",
+    "@std/http/file-server": "jsr:@std/http@1/file-server",
+    "@std/path": "jsr:@std/path@1",
+    "@trpc/server": "npm:@trpc/server@^11.1.2"
+  }
+}

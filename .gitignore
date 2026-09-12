@@ -13,11 +13,20 @@ dist-ssr
 .vite
 *.local
 
-# Editor directories and files
+# Editor / IDE / agent directories (local-only state)
+# Add new IDE/agent folders here as you adopt them.
 .vscode/*
-!.vscode/extensions.json
-.vscode/settings.json
-.idea
+.zed/*
+.kilo/*
+.idea/
+.cursor/
+.windsurf/
+.aider/
+.claude/
+.crush/
+.continue/
+.fleet/
+.github/copilot/
 .DS_Store
 *.suo
 *.ntvs*

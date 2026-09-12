@@ -1,11 +1,16 @@
 import type { Config } from "drizzle-kit";
-import { DATABASE_CONNECTION_STRING } from "./constants/global.constant.ts";
+
+const databaseUrl = Deno.env.get("DATABASE_URL");
+
+if (!databaseUrl) {
+  throw new Error("DATABASE_URL env variable is not set");
+}
 
 export default {
   schema: "./db/schema.ts",
   out: "./db/migrations",
   driver: "pg",
   dbCredentials: {
-    connectionString: DATABASE_CONNECTION_STRING,
+    connectionString: databaseUrl,
   },
 } satisfies Config;
