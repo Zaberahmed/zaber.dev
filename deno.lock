@@ -11,6 +11,7 @@
     "jsr:@std/internal@^1.0.14": "1.0.14",
     "jsr:@std/media-types@^1.1.0": "1.1.0",
     "jsr:@std/net@^1.0.6": "1.0.6",
+    "jsr:@std/path@1": "1.1.5",
     "jsr:@std/path@^1.1.5": "1.1.5",
     "jsr:@std/streams@^1.1.1": "1.1.1",
     "npm:@deno/vite-plugin@^1.0.4": "1.0.4_vite@6.3.5__picomatch@4.0.2__@types+node@22.15.15_@types+node@22.15.15",
@@ -23,7 +24,6 @@
     "npm:@trpc/react-query@^11.1.2": "11.1.3_@tanstack+react-query@5.77.2__react@19.0.0_@trpc+client@11.1.3__@trpc+server@11.1.3___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.3__typescript@5.8.3_react@19.0.0_react-dom@19.0.0__react@19.0.0_typescript@5.8.3",
     "npm:@trpc/server@^11.1.2": "11.1.3_typescript@5.8.3",
     "npm:@trpc/tanstack-react-query@^11.1.2": "11.1.3_@tanstack+react-query@5.77.2__react@19.0.0_@trpc+client@11.1.3__@trpc+server@11.1.3___typescript@5.8.3__typescript@5.8.3_@trpc+server@11.1.3__typescript@5.8.3_react@19.0.0_react-dom@19.0.0__react@19.0.0_typescript@5.8.3",
-    "npm:@types/cors@^2.8.17": "2.8.18",
     "npm:@types/node@*": "22.15.15",
     "npm:@types/pg@^8.10.7": "8.15.2",
     "npm:@types/react-dom@19.0.4": "19.0.4_@types+react@19.0.10",
@@ -35,7 +35,6 @@
     "npm:class-variance-authority@~0.7.1": "0.7.1",
     "npm:clsx@2": "2.1.1",
     "npm:clsx@^2.1.1": "2.1.1",
-    "npm:cors@^2.8.5": "2.8.5",
     "npm:drizzle-kit@~0.20.10": "0.20.18_hono@4.7.10_zod@3.25.32_esbuild@0.19.12",
     "npm:drizzle-orm@~0.29.3": "0.29.5_@types+pg@8.15.2_@types+react@19.0.10_pg@8.16.0_react@19.0.0",
     "npm:framer-motion@^12.23.3": "12.23.3_react@19.0.0_react-dom@19.0.0__react@19.0.0",
@@ -85,7 +84,7 @@
         "jsr:@std/html",
         "jsr:@std/media-types",
         "jsr:@std/net",
-        "jsr:@std/path",
+        "jsr:@std/path@^1.1.5",
         "jsr:@std/streams"
       ]
     },
@@ -813,12 +812,6 @@
         "typescript"
       ]
     },
-    "@types/cors@2.8.18": {
-      "integrity": "sha512-nX3d0sxJW41CqQvfOzVG1NCTXfFDrDWIghCZncpHeWlVFd81zxB/DLhg7avFg6eHLCRX7ckBmoIIcqa++upvJA==",
-      "dependencies": [
-        "@types/node"
-      ]
-    },
     "@types/estree@1.0.7": {
       "integrity": "sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ=="
     },
@@ -993,13 +986,6 @@
       "integrity": "sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==",
       "dependencies": [
         "is-what"
-      ]
-    },
-    "cors@2.8.5": {
-      "integrity": "sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==",
-      "dependencies": [
-        "object-assign",
-        "vary"
       ]
     },
     "cross-spawn@7.0.6": {
@@ -2043,9 +2029,6 @@
     "util-deprecate@1.0.2": {
       "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
     },
-    "vary@1.1.2": {
-      "integrity": "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg=="
-    },
     "vite@6.3.5_picomatch@4.0.2_@types+node@22.15.15": {
       "integrity": "sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==",
       "dependencies": [
@@ -2156,14 +2139,19 @@
         "dependencies": [
           "jsr:@std/dotenv@~0.225.5",
           "npm:@trpc/server@^11.1.2",
-          "npm:@types/cors@^2.8.17",
           "npm:@types/pg@^8.10.7",
-          "npm:cors@^2.8.5",
           "npm:drizzle-kit@~0.20.10",
           "npm:drizzle-orm@~0.29.3",
           "npm:jose@^5.2.0",
           "npm:pg@^8.11.3",
           "npm:zod@^3.22.4"
+        ]
+      },
+      "apps/server": {
+        "dependencies": [
+          "jsr:@std/http@1",
+          "jsr:@std/path@1",
+          "npm:@trpc/server@^11.1.2"
         ]
       },
       "apps/web": {

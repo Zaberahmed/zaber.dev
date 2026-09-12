@@ -4,40 +4,43 @@
     "db:migrate": "deno task --cwd=apps/api db:migrate",
 
     "dev:api": "deno task --cwd=apps/api dev",
-    "deploy:api": "deno deploy --project=zaber-api --prod apps/api/index.ts --env-file=.env.production --include=apps/api,packages/constants --exclude=node_modules",
     "dev:web": "deno task --cwd=apps/web dev",
+    "dev:server": "deno task --cwd=apps/server dev",
+
     "build:web": "deno task --cwd=apps/web build",
     "preview:web": "deno task --cwd=apps/web preview",
     "serve:web": "deno task --cwd=apps/web serve",
-    "deploy:web": "deno task build:web && deno deploy --project=zaber --prod apps/web/server.ts --env-file=.env.production --include=apps/web,packages/** --exclude=node_modules",
+
+    "deploy:server": "deno task build:web && deno deploy --project=zaber --prod apps/server/index.ts --env-file=.env.production --include=apps/server,apps/api,apps/web/dist,packages/constants --exclude=node_modules",
+
     "dev": "deno task dev:api & deno task dev:web",
     "test": "deno test",
     "lint": "deno lint",
     "format": "deno fmt",
-    "deploy": "deno task deploy:api & deno task deploy:web"
+    "deploy": "deno task deploy:server"
   },
   "nodeModulesDir": "auto",
 
   "workspace": [
     "apps/api",
     "apps/web",
+    "apps/server",
     "packages/shadcn",
     "packages/constants"
   ],
 
   "deploy": {
     "org": "zaberahmedorg",
-    "api": {
-      "project": "zaber-api",
-      "exclude": ["**/node_modules"],
-      "include": ["apps/api", "packages/constants"],
-      "entrypoint": "apps/api/index.ts"
-    },
-    "web": {
+    "server": {
       "project": "zaber",
       "exclude": ["**/node_modules"],
-      "include": ["apps/web", "packages/shadcn", "packages/constants"],
-      "entrypoint": "apps/web/server.ts"
+      "include": [
+        "apps/server",
+        "apps/api",
+        "apps/web/dist",
+        "packages/constants"
+      ],
+      "entrypoint": "apps/server/index.ts"
     }
   }
 }
