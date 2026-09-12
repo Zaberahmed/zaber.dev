@@ -15,9 +15,9 @@ dist-ssr
 
 # Editor / IDE / agent directories (local-only state)
 # Add new IDE/agent folders here as you adopt them.
-.vscode/
-.zed/
-.kilo/
+.vscode/*
+.zed/*
+.kilo/*
 .idea/
 .cursor/
 .windsurf/
